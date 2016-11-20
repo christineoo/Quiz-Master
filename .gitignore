@@ -1,0 +1,5 @@
+node_modules/
+.idea/
+src/public/
+.DS_Store
+src/app/images/.DS_Store
