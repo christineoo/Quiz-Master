@@ -1,9 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import CenteredView from '../components/common/CenteredView';
-import QuestionsList from '../components/Question/QuestionsList';
-import CreateQuestion from '../components/Question/New';
-import UpdateQuestion from '../components/Question/Edit';
-import DeleteQuestion from '../components/Question/Delete';
+import QuestionsList from '../components/question/QuestionsList';
+import CreateQuestion from '../components/question/CreateQuestion';
+import UpdateQuestion from '../components/question/UpdateQuestion';
+import DeleteQuestion from '../components/question/DeleteQuestion';
 
 import { loadQuestions, createQuestion, deleteQuestion } from '../actions/questions';
 import { connect } from 'react-redux';

@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import CenteredView from '../components/common/CenteredView'
-import Home from '../components/Home/Home'
+import Home from '../components/home/Home'
 import { hashHistory } from 'react-router'
 
 class HomeContainer extends Component {

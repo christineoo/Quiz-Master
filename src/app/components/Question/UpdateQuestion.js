@@ -28,6 +28,7 @@ class Edit extends Component {
     }
 
     render () {
+        // TODO: clean up
 console.log('state: ', this.state)
         const actions = [
             <FlatButton
