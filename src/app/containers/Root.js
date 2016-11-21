@@ -4,7 +4,7 @@ import routes from '../routes'
 import { Router } from 'react-router'
 
 const Root = ({ store, history }) => (
-<Provider store={store}>
+    <Provider store={store}>
         <Router history={history} routes={routes} />
     </Provider>
 );
