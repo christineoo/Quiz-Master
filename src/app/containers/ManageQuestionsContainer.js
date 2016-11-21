@@ -4,9 +4,9 @@ import CreateQuestion from '../components/question/CreateQuestion';
 import UpdateQuestion from '../components/question/UpdateQuestion';
 import DeleteQuestion from '../components/question/DeleteQuestion';
 
-import { loadQuestions, createQuestion, deleteQuestion } from '../actions/questions';
-import { connect } from 'react-redux';
-import { FloatingActionButton } from 'material-ui';
+import {loadQuestions, createQuestion, deleteQuestion} from '../actions/questions';
+import {connect} from 'react-redux';
+import {FloatingActionButton} from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 class ManageQuestionsContainer extends Component {
@@ -72,7 +72,7 @@ class ManageQuestionsContainer extends Component {
     render() {
         return (
             <div style={{paddingTop: '70px'}}>
-                <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                     <FloatingActionButton style={{position: 'fixed', right: '20px'}}
                                           secondary={true}
                                           onTouchTap={this.handleAddQuestion}
@@ -107,7 +107,7 @@ class ManageQuestionsContainer extends Component {
 }
 
 const stateToProps = state => {
-    const { questions } = state.questions;
+    const {questions} = state.questions;
 
     return {
         questions

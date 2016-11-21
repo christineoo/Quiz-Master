@@ -21,11 +21,11 @@ class QuestionsList extends Component {
             return (
                 <Card style={cardStyle}>
                     <CardText>
-                        <p dangerouslySetInnerHTML={{__html: question[key].content}} />
-                        </CardText>
+                        <p dangerouslySetInnerHTML={{__html: question[key].content}}/>
+                    </CardText>
                     <CardActions>
-                        <FlatButton label="Edit" onTouchTap={() => this.props.onUpdateQuestionClick(question[key])} />
-                        <FlatButton label="Delete" onTouchTap={() => this.props.onDeleteQuestionClick(question[key])} />
+                        <FlatButton label="Edit" onTouchTap={() => this.props.onUpdateQuestionClick(question[key])}/>
+                        <FlatButton label="Delete" onTouchTap={() => this.props.onDeleteQuestionClick(question[key])}/>
                     </CardActions>
                 </Card>
             )
@@ -35,7 +35,7 @@ class QuestionsList extends Component {
     render() {
         const {questions} = this.props;
 
-        const QuestionListStyle={
+        const QuestionListStyle = {
             // paddingTop: '70px',
             display: 'flex',
             alignItems: 'center',
@@ -46,7 +46,7 @@ class QuestionsList extends Component {
                 <h1>Questions List</h1>
 
                 {questions.map((question) =>
-                        this.renderQuestion(question)
+                    this.renderQuestion(question)
                 )}
 
             </div>

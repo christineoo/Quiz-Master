@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import { Dialog, FlatButton, TextField } from 'material-ui';
+import {Dialog, FlatButton, TextField} from 'material-ui';
 
 class Edit extends Component {
 
@@ -19,7 +19,7 @@ class Edit extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.selectedQuestion != nextProps.selectedQuestion) {
+        if (this.props.selectedQuestion != nextProps.selectedQuestion) {
             this.setState({
                 content: nextProps.selectedQuestion.content,
                 answer: nextProps.selectedQuestion.answer
@@ -27,19 +27,19 @@ class Edit extends Component {
         }
     }
 
-    render () {
+    render() {
         // TODO: clean up
-console.log('state: ', this.state)
+        console.log('state: ', this.state)
         const actions = [
             <FlatButton
                 label={'Cancel'}
                 secondary={true}
-                onTouchTap={this.props.onUpdateDialogClose} />,
+                onTouchTap={this.props.onUpdateDialogClose}/>,
             <FlatButton
                 label={'Submit'}
                 primary={true}
                 disabled={false}
-                onTouchTap={this.handleSubmit} />,
+                onTouchTap={this.handleSubmit}/>,
         ];
 
         return (
@@ -55,12 +55,12 @@ console.log('state: ', this.state)
                            value={this.state.content}
                            floatingLabelText={'Question Content'}
                            errorText={this.state.content ? null : 'This field is required.'}
-                           onChange={(event) => this.setState({ content: event.target.value })}
+                           onChange={(event) => this.setState({content: event.target.value})}
                 />
                 <TextField fullWidth
                            value={this.state.answer}
                            floatingLabelText={'Answer'}
-                           onChange={(event) => this.setState({ answer: event.target.value })}
+                           onChange={(event) => this.setState({answer: event.target.value})}
                            errorText={this.state.answer ? null : 'This field is required.'}
                 />
             </Dialog>
