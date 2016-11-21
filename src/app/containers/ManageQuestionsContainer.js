@@ -36,12 +36,6 @@ class ManageQuestionsContainer extends Component {
         })
     };
 
-    handleCreateDialogClose = () => {
-        this.setState({
-            openCreateDialog: false
-        })
-    };
-
     handleCreateSubmit = (newQuestion) => {
         console.log('handleCreateSubmit: ', newQuestion);
         this.props.createQuestion(newQuestion);
@@ -59,12 +53,6 @@ class ManageQuestionsContainer extends Component {
         })
     };
 
-    handleUpdateDialogClose = () => {
-        this.setState({
-            openUpdateDialog: false
-        })
-    };
-
     // Delete Question
     handleDeleteQuestion = (question) => {
         console.log('delete: ', question)
@@ -72,12 +60,6 @@ class ManageQuestionsContainer extends Component {
             selectedQuestion: question,
             openDeleteDialog: true
         });
-    };
-
-    handleDeleteDialogClose = () => {
-        this.setState({
-            openDeleteDialog: false
-        })
     };
 
     handleDeleteSubmit = () => {
@@ -100,19 +82,19 @@ class ManageQuestionsContainer extends Component {
                 </div>
                 <CreateQuestion
                     openCreateDialog={this.state.openCreateDialog}
-                    onCreateDialogClose={this.handleCreateDialogClose}
                     onSubmitClick={this.handleCreateSubmit}
+                    onCreateDialogClose={() => this.setState({openCreateDialog: false})}
                 />
                 <UpdateQuestion
-                    selectedQuestion={this.state.selectedQuestion}
                     openUpdateDialog={this.state.openUpdateDialog}
-                    onUpdateDialogClose={this.handleUpdateDialogClose}
+                    selectedQuestion={this.state.selectedQuestion}
+                    onUpdateDialogClose={() => this.setState({openUpdateDialog: false})}
                 />
                 <DeleteQuestion
-                    selectedQuestion={this.state.selectedQuestion}
                     openDeleteDialog={this.state.openDeleteDialog}
-                    onDeleteDialogClose={this.handleDeleteDialogClose}
+                    selectedQuestion={this.state.selectedQuestion}
                     onSubmitClick={this.handleDeleteSubmit}
+                    onDeleteDialogClose={() => this.setState({openDeleteDialog: false})}
                 />
                 <QuestionsList
                     questions={this.props.questions}
