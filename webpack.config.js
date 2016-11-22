@@ -7,7 +7,7 @@ var APP_DIR = path.resolve(__dirname, 'src/app');
 var ROOT_DIR = path.resolve(__dirname, 'src');
 
 var config = {
-    devTools: '#inline-source-map',
+    devtool: 'source-map',
 
     entry: getEntrySources([
         APP_DIR + '/index.js',
