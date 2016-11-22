@@ -4,7 +4,7 @@ import CreateQuestion from '../components/question/CreateQuestion';
 import UpdateQuestion from '../components/question/UpdateQuestion';
 import DeleteQuestion from '../components/question/DeleteQuestion';
 
-import {loadQuestions, createQuestion, deleteQuestion} from '../actions/questions';
+import {loadQuestions, createQuestion, updateQuestion, deleteQuestion} from '../actions/questions';
 import {connect} from 'react-redux';
 import {FloatingActionButton} from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -46,16 +46,21 @@ class ManageQuestionsContainer extends Component {
 
     // Update question
     handleUpdateQuestion = (question) => {
-        console.log('update question: ', question);
         this.setState({
             selectedQuestion: question,
             openUpdateDialog: true
         })
     };
 
+    handleUpdateSubmit = (updatedQuestion) => {
+        this.props.updateQuestion(updatedQuestion);
+        this.setState({
+            openUpdateDialog: false
+        })
+    };
+
     // Delete Question
     handleDeleteQuestion = (question) => {
-        console.log('delete: ', question)
         this.setState({
             selectedQuestion: question,
             openDeleteDialog: true
@@ -87,6 +92,7 @@ class ManageQuestionsContainer extends Component {
                 />
                 <UpdateQuestion
                     openUpdateDialog={this.state.openUpdateDialog}
+                    onUpdateClick={this.handleUpdateSubmit}
                     selectedQuestion={this.state.selectedQuestion}
                     onUpdateDialogClose={() => this.setState({openUpdateDialog: false})}
                 />
@@ -117,6 +123,7 @@ const stateToProps = state => {
 const actionsToProps = dispatch => ({
     loadQuestions: () => dispatch(loadQuestions()),
     createQuestion: (newQuestion) => dispatch(createQuestion(newQuestion)),
+    updateQuestion: (updatedQuestion) => dispatch(updateQuestion(updatedQuestion)),
     deleteQuestion: (id) => dispatch(deleteQuestion(id))
 });
 

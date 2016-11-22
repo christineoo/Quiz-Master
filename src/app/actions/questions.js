@@ -45,6 +45,18 @@ export function createQuestion(newQuestion) {
     }
 }
 
+export function updateQuestion(updatedQuestion) {
+    return (dispatch) => {
+        dispatch(requestRemoteAction());
+        Api.put(`questions/${updatedQuestion.id}`, updatedQuestion)
+            .then(res => {
+                if(res.ok) {
+                    dispatch(loadQuestions())
+                }
+            })
+    }
+}
+
 export function deleteQuestion(id) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
