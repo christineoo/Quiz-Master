@@ -22,6 +22,7 @@ class QuestionsList extends Component {
                 <Card style={cardStyle}>
                     <CardText>
                         <p dangerouslySetInnerHTML={{__html: question[key].content}}/>
+                        <p>{`Answer: ${question[key].answer}`}</p>
                     </CardText>
                     <CardActions>
                         <FlatButton label="Edit" onTouchTap={() => this.props.onUpdateQuestionClick(question[key])}/>
