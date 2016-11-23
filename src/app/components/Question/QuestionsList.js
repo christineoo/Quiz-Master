@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import {Card, CardActions, CardText, FlatButton} from 'material-ui';
+import {stateFromHTML} from 'draft-js-import-html';
+import {Editor, EditorState, createWithContent} from 'draft-js';
 
 class QuestionsList extends Component {
 
@@ -18,11 +20,20 @@ class QuestionsList extends Component {
         };
 
         return Object.keys(question).map((key) => {
+            let contentState = stateFromHTML(question[key].content);
+            let editorState = EditorState.createWithContent(contentState);
+
             return (
                 <Card style={cardStyle}>
                     <CardText>
-                        <p dangerouslySetInnerHTML={{__html: question[key].content}}/>
-                        <p>{`Answer: ${question[key].answer}`}</p>
+                        <div className="RichEditor-editor">
+                            <Editor
+                                editorState={editorState}
+                                ref="editor"
+                                readOnly={true}
+                            />
+                            <p>{`Answer: ${question[key].answer}`}</p>
+                        </div>
                     </CardText>
                     <CardActions>
                         <FlatButton label="Edit" onTouchTap={() => this.props.onUpdateQuestionClick(question[key])}/>
