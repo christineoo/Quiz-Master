@@ -69,3 +69,41 @@ export function deleteQuestion(id) {
             })
     }
 }
+
+export const RECEIVE_START_QUESTION = 'RECEIVE_START_QUESTION';
+export function startingQuiz(question){
+    return {
+        type: RECEIVE_START_QUESTION,
+        question
+    }
+}
+export function startQuiz() {
+    return (dispatch) => {
+        dispatch(requestRemoteAction());
+        Api.get('start_quiz')
+            .then(res => {
+                if(res.ok) {
+                    return res.json();
+                }
+            })
+            .then((json) => {
+                dispatch(startingQuiz(json))
+            })
+    }
+}
+
+export function submitAnswer(id, inputAnswer) {
+    return (dispatch) => {
+        dispatch(requestRemoteAction());
+        Api.post(`/check_answer/${id}`, {inputAnswer: inputAnswer})
+            .then(res => {
+                if(res.ok) {
+                    return res.json()
+                }
+            })
+            .then((json) => {
+                dispatch(nextQuestion(json))
+            })
+    }
+
+}

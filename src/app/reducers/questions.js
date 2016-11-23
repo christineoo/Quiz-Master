@@ -1,10 +1,11 @@
 import {
-    REQUEST_REMOTE_ACTION, RECEIVE_QUESTIONS
+    REQUEST_REMOTE_ACTION, RECEIVE_QUESTIONS, RECEIVE_START_QUESTION
 } from '../actions/questions'
 
 const initState = {
     isPending: false,
-    questions: []
+    questions: [],
+    question: {}
 };
 
 const questions = function(state = initState, action = null) {
@@ -19,6 +20,12 @@ const questions = function(state = initState, action = null) {
             return Object.assign({}, state, {
                 isPending: false,
                 questions: [action.questions]
+            });
+
+        case RECEIVE_START_QUESTION:
+            return Object.assign({}, state, {
+                isPending: false,
+                question: action.question
             });
 
         default:
