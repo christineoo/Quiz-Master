@@ -1,13 +1,12 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import QuestionsList from '../components/question/QuestionsList';
 import CreateQuestion from '../components/question/CreateQuestion';
 import UpdateQuestion from '../components/question/UpdateQuestion';
 import DeleteQuestion from '../components/question/DeleteQuestion';
-
-import {loadQuestions, createQuestion, updateQuestion, deleteQuestion} from '../actions/questions';
-import {connect} from 'react-redux';
 import {FloatingActionButton} from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import {loadQuestions, createQuestion, updateQuestion, deleteQuestion} from '../actions/questions';
 
 class ManageQuestionsContainer extends Component {
 
