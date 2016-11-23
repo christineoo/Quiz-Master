@@ -49,11 +49,11 @@ class QuizContainer extends Component {
     };
 
     render() {
-        console.log('this.props.question: ', this.props.question)
-        if (!this.props.isPending) {
-            let contentState = stateFromHTML(this.props.question.content);
+        const { isPending, question } = this.props
+        console.log('question: ', question)
+        if (!isPending && Object.keys(question).length > 0) {
+            let contentState = stateFromHTML(question.content);
             let editorState = EditorState.createWithContent(contentState);
-            console.log('this.props.question: ', this.props.question)
             return (
                 <div>
                     <CenteredView>
@@ -80,6 +80,9 @@ class QuizContainer extends Component {
                     </CenteredView>
                 </div>
             )
+        }
+        else if (Object.keys(question).length == 0) {
+            return (<CenteredView>No questions created yet~!</CenteredView>)
         }
         else {
             return(<CenteredView>Pending</CenteredView>)

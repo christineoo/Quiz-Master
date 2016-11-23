@@ -46,23 +46,30 @@ class QuestionsList extends Component {
 
     render() {
         const {questions} = this.props;
-
         const QuestionListStyle = {
             // paddingTop: '70px',
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'column'
         }
-        return (
-            <div style={QuestionListStyle}>
-                <h1>Questions List</h1>
 
-                {questions.map((question) =>
-                    this.renderQuestion(question)
-                )}
+        if(questions.length > 0) {
+            return (
+                <div style={QuestionListStyle}>
+                    <h1>Questions List</h1>
 
-            </div>
-        )
+                    {questions.map((question) =>
+                        this.renderQuestion(question)
+                    )}
+
+                </div>
+            )
+        }
+        else {
+            return (
+                <div>No questions created yet~!</div>
+            )
+        }
     }
 
 }

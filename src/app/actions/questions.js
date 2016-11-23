@@ -27,8 +27,10 @@ export function loadQuestions() {
                 }
             })
             .then((json) => {
-                const normalized = normalize(json, arrayOf(new Schema('questions')));
-                dispatch(receiveQuestions(normalized.entities.questions));
+                if (json.length > 0) {
+                    const normalized = normalize(json, arrayOf(new Schema('questions')));
+                    dispatch(receiveQuestions(normalized.entities.questions));
+                }
             })
     }
 }
