@@ -73,7 +73,7 @@ export function deleteQuestion(id) {
 }
 
 export const RECEIVE_START_QUESTION = 'RECEIVE_START_QUESTION';
-export function startingQuiz(question){
+export function firstQuestionReceived(question){
     return {
         type: RECEIVE_START_QUESTION,
         question
@@ -89,23 +89,52 @@ export function startQuiz() {
                 }
             })
             .then((json) => {
-                dispatch(startingQuiz(json))
+                dispatch(firstQuestionReceived(json))
             })
+    }
+}
+
+export const SHOW_VALIDATED_ANSWER = 'SHOW_VALIDATED_ANSWER';
+export function showValidatedAnswer(res){
+    return {
+        type: SHOW_VALIDATED_ANSWER,
+        res
     }
 }
 
 export function submitAnswer(id, inputAnswer) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
-        Api.post(`/check_answer/${id}`, {inputAnswer: inputAnswer})
+        Api.post(`check_answer/${id}`, {inputAnswer: inputAnswer})
             .then(res => {
                 if(res.ok) {
                     return res.json()
                 }
             })
             .then((json) => {
-                dispatch(nextQuestion(json))
+                dispatch(showValidatedAnswer(json))
             })
     }
+}
 
+export const RECEIVE_QUIZ_QUESTION = 'RECEIVE_QUIZ_QUESTION';
+export function quizQuestionReceived(question) {
+    return {
+        type: RECEIVE_QUIZ_QUESTION,
+        question
+    }
+}
+export function getNextQuestion(id) {
+    return (dispatch) => {
+        dispatch(requestRemoteAction());
+        Api.get(`questions/${id}`)
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+            })
+            .then((json) => {
+                dispatch(quizQuestionReceived(json))
+            })
+    }
 }

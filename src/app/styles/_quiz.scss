@@ -1,0 +1,10 @@
+.validated-answer {
+  display: flex;
+  align-items: center;
+  &.incorrect {
+    color: #F56134;
+  }
+  &.correct {
+    color: #58AD3F;
+  }
+}

@@ -1,11 +1,12 @@
 import {
-    REQUEST_REMOTE_ACTION, RECEIVE_QUESTIONS, RECEIVE_START_QUESTION
+    REQUEST_REMOTE_ACTION, RECEIVE_QUESTIONS, RECEIVE_START_QUESTION, RECEIVE_QUIZ_QUESTION, SHOW_VALIDATED_ANSWER
 } from '../actions/questions'
 
 const initState = {
     isPending: false,
     questions: [],
-    question: {}
+    question: {},
+    validatedAnswer: {}
 };
 
 const questions = function(state = initState, action = null) {
@@ -25,7 +26,21 @@ const questions = function(state = initState, action = null) {
         case RECEIVE_START_QUESTION:
             return Object.assign({}, state, {
                 isPending: false,
-                question: action.question
+                question: action.question,
+                validatedAnswer: {}
+            });
+
+        case RECEIVE_QUIZ_QUESTION:
+            return Object.assign({}, state, {
+                isPending: false,
+                question: action.question,
+                validatedAnswer: {}
+            });
+
+        case SHOW_VALIDATED_ANSWER:
+            return Object.assign({}, state, {
+                isPending: false,
+                validatedAnswer: action.res
             });
 
         default:
