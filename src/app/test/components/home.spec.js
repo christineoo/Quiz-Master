@@ -6,7 +6,7 @@ import Home from '../../components/home/Home';
 import { RaisedButton } from 'material-ui';
 
 expect.extend(expectJSX);
-describe('HomeComponent', () => {
+describe('Home Component', () => {
     function handleQuizMode() {
         return null;
     }
