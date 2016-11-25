@@ -8,25 +8,16 @@ class Home extends Component {
     };
 
     render() {
-        const style = {
-            container: {
-                display: 'flex',
-                flexDirection: 'column'
-            },
-            button: {
-                margin: '12px'
-            }
-        };
 
         return (
-            <div style={style.container}>
-                <RaisedButton style={style.button}
+            <div className="container">
+                <RaisedButton className="button"
                               label="Manage Questions Mode"
                               primary={true}
                               onTouchTap={this.props.onManageQuestionModeClick}
 
                 />
-                <RaisedButton style={style.button}
+                <RaisedButton className="button"
                               label="Quiz Mode"
                               primary={true}
                               onTouchTap={this.props.onQuizModeClick}
