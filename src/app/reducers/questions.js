@@ -23,13 +23,6 @@ const questions = function(state = initState, action = null) {
                 questions: [action.questions]
             });
 
-        case RECEIVE_START_QUESTION:
-            return Object.assign({}, state, {
-                isPending: false,
-                question: action.question,
-                validatedAnswer: {}
-            });
-
         case RECEIVE_QUIZ_QUESTION:
             return Object.assign({}, state, {
                 isPending: false,

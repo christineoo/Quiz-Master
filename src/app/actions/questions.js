@@ -72,28 +72,6 @@ export function deleteQuestion(id) {
     }
 }
 
-export const RECEIVE_START_QUESTION = 'RECEIVE_START_QUESTION';
-export function firstQuestionReceived(question){
-    return {
-        type: RECEIVE_START_QUESTION,
-        question
-    }
-}
-export function startQuiz() {
-    return (dispatch) => {
-        dispatch(requestRemoteAction());
-        Api.get('start_quiz')
-            .then(res => {
-                if(res.ok) {
-                    return res.json();
-                }
-            })
-            .then((json) => {
-                dispatch(firstQuestionReceived(json))
-            })
-    }
-}
-
 export const SHOW_VALIDATED_ANSWER = 'SHOW_VALIDATED_ANSWER';
 export function showValidatedAnswer(res){
     return {
@@ -124,6 +102,22 @@ export function quizQuestionReceived(question) {
         question
     }
 }
+
+export function startQuiz() {
+    return (dispatch) => {
+        dispatch(requestRemoteAction());
+        Api.get('start_quiz')
+            .then(res => {
+                if(res.ok) {
+                    return res.json();
+                }
+            })
+            .then((json) => {
+                dispatch(quizQuestionReceived(json))
+            })
+    }
+}
+
 export function getNextQuestion(id) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
