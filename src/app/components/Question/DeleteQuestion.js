@@ -45,7 +45,7 @@ class Delete extends Component {
             <Dialog
                 title="Are you sure you want to delete this question?"
                 open={this.props.openDeleteDialog}
-                onRequestClose={this.props.onUpdateDialogClose}
+                onRequestClose={this.props.onDeleteDialogClose}
                 modal={true}
                 actions={actions}
                 autoScrollBodyContent={true}
