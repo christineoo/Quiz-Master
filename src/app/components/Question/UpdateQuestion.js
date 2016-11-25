@@ -51,7 +51,13 @@ class Edit extends Component {
             errorMessage: ''
         };
 
-        this.onChange = (editorState) => this.setState({editorState});
+        this.onChange = (editorState) => {
+            let html = stateToHTML(editorState.getCurrentContent());
+            this.setState({
+                editorState: editorState,
+                content: html
+            });
+        }
         this.focus = () => this.refs.editor.focus();
         this.handleKeyCommand = (command) => this._handleKeyCommand(command);
         this.toggleBlockType = (type) => this._toggleBlockType(type);
@@ -110,12 +116,10 @@ class Edit extends Component {
     };
 
     handleUpdate = () => {
-        let html = stateToHTML(this.state.editorState.getCurrentContent());
         this.setState({
-            content: html,
             errorMessage: ''
         });
-        this.props.onUpdateClick({ id: this.props.selectedQuestion.id, content: html, answer: this.state.answer });
+        this.props.onUpdateClick({ id: this.props.selectedQuestion.id, content: this.state.content, answer: this.state.answer });
     };
 
     onAnswerChange = (event) => {
@@ -142,8 +146,9 @@ class Edit extends Component {
             <FlatButton
                 label={'Update'}
                 primary={true}
-                disabled={false}
-                onTouchTap={this.handleUpdate}/>,
+                // Empty Editor defaults to have <p><br></p>, so we need to check and disable button if Editor is empty
+                disabled={this.state.content === '' || this.state.content === "<p><br></p>" || this.state.answer === ''}
+                onTouchTap={this.handleUpdate}/>
         ];
 
         const {editorState} = this.state;

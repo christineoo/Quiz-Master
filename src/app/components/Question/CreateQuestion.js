@@ -39,7 +39,13 @@ class New extends Component {
             answer: '',
             content: ''
         };
-        this.onChange = (editorState) => this.setState({editorState});
+        this.onChange = (editorState) => {
+            let html = stateToHTML(editorState.getCurrentContent());
+            this.setState({
+                editorState: editorState,
+                content: html
+            });
+        }
         this.focus = () => this.refs.editor.focus();
         this.handleKeyCommand = (command) => this._handleKeyCommand(command);
         this.toggleBlockType = (type) => this._toggleBlockType(type);
@@ -85,12 +91,7 @@ class New extends Component {
     };
 
     handleSubmit = () => {
-        let html = stateToHTML(this.state.editorState.getCurrentContent());
-
-        this.setState({
-            content: html
-        });
-        this.props.onSubmitClick({ content: html, answer: this.state.answer });
+        this.props.onSubmitClick({ content: this.state.content, answer: this.state.answer });
         this.handleClose();
     };
 
@@ -117,7 +118,8 @@ class New extends Component {
             <FlatButton
                 label={'Create'}
                 primary={true}
-                disabled={this.state.content == '' && this.state.answer == ''}
+                // Empty Editor defaults to have <p><br></p>, so we need to check and disable button if Editor is empty
+                disabled={this.state.content === '' || this.state.content === "<p><br></p>" || this.state.answer === ''}
                 onTouchTap={this.handleSubmit} />,
         ];
         const {editorState} = this.state;
