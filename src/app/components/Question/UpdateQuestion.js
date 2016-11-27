@@ -44,7 +44,6 @@ class Edit extends Component {
 
         let contentState = stateFromHTML(this.props.selectedQuestion.content);
         this.state = {
-            question: this.props.selectedQuestion,
             content: this.props.selectedQuestion.content,
             answer: this.props.selectedQuestion.answer,
             editorState: EditorState.createWithContent(contentState),
@@ -136,8 +135,6 @@ class Edit extends Component {
     };
 
     render() {
-        // TODO: clean up
-        console.log('state: ', this.state)
         const actions = [
             <FlatButton
                 label={'Cancel'}
@@ -161,7 +158,6 @@ class Edit extends Component {
                 className += ' RichEditor-hidePlaceholder';
             }
         }
-        console.log('editorState: ', this.state.editorState)
         return (
             <Dialog
                 title="Edit Question"
