@@ -71,4 +71,17 @@ describe('Delete Question Component', () => {
         );
         expect(actual).toIncludeJSX(expected);
     });
+
+    it('should render buttons with label Delete and Cancel', () => {
+        const expectedDeleteLabel = "Delete";
+        const expectedCancelLabel = "Cancel";
+        const wrapper = setup();
+        let buttons = wrapper.find(Dialog).node.props.actions;
+
+        const actualCancelButtonLabel = buttons[0].props.label;
+        const actualDeleteButtonLabel = buttons[1].props.label;
+
+        expect(actualCancelButtonLabel).toEqual(expectedCancelLabel);
+        expect(actualDeleteButtonLabel).toEqual(expectedDeleteLabel);
+    });
 });
