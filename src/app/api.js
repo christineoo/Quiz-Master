@@ -1,7 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-const apiUrl = "http://localhost:3000/api/v1";
-
+const apiUrl = "https://quiz-master-test.herokuapp.com/api/v1/";
 let defaultHeaders = {
     'Content-Type': 'application/json'
 };
@@ -9,29 +8,6 @@ let defaultHeaders = {
 let errorHandlers = [];
 
 const Api = {
-    setHeaders: (headers) => {
-        Object.keys(headers).forEach((header) => {
-            Api.setHeader(header, headers[header]);
-        });
-    },
-
-    setHeader: (header, value) => {
-        defaultHeaders[header] = value;
-    },
-
-    setToken: (token) => {
-        Api.setHeaders({
-            'Authorization': 'Bearer ' + token,
-            'Accept': 'application/json'
-        });
-    },
-
-    addErrorHandler: (handler) => {
-        if(handler) {
-            errorHandlers.push(handler);
-        }
-    },
-
     get: (url, headers, params) => {
         return Api.send(url, {
             method: 'get',
@@ -69,32 +45,8 @@ const Api = {
     },
 
     send: (url, options) => {
-        let apiEndpoint = '';
-
-        if (url == 'connect'){
-            apiEndpoint = apiUrl;
-        }
-        else if (url == 'reissue'){
-            apiEndpoint = apiUrl;
-            let token = localStorage.getItem('token');
-            if (token) {
-                Api.setToken(token);
-            }
-        }
-        else {
-            apiEndpoint = apiUrl;
-            let token = localStorage.getItem('token');
-            if (token) {
-                Api.setToken(token);
-            }
-        }
-
+        let apiEndpoint = apiUrl;
         let headers = Object.assign({}, defaultHeaders, options.headers || {});
-
-        if (url == 'connect'){
-            delete headers.Authorization
-        }
-
         let opt = {
             method: options.method || 'get',
             headers: headers
