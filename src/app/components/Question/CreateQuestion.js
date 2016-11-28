@@ -23,7 +23,7 @@ function getBlockStyle(block) {
 }
 //text editor's code ends
 
-class New extends Component {
+class CreateQuestion extends Component {
 
     static propTypes = {
         openCreateDialog: PropTypes.bool.isRequired,
@@ -174,4 +174,4 @@ class New extends Component {
 
 }
 
-export default New;
+export default CreateQuestion;

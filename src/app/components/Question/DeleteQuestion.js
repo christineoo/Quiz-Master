@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Dialog, FlatButton } from 'material-ui';
 
-class Delete extends Component {
+class DeleteQuestion extends Component {
 
     static propTypes = {
         selectedQuestion: PropTypes.object.isRequired,
@@ -59,4 +59,4 @@ class Delete extends Component {
     }
 }
 
-export default Delete;
+export default DeleteQuestion;
