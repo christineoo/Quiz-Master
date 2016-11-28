@@ -31,6 +31,9 @@ export function loadQuestions() {
                     const normalized = normalize(json, arrayOf(new Schema('questions')));
                     dispatch(receiveQuestions(normalized.entities.questions));
                 }
+                else {
+                    dispatch(receiveQuestions({}));
+                }
             })
     }
 }

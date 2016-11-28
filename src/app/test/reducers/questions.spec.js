@@ -50,7 +50,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(initState(), action);
         const expected = {
             isPending: false,
-            questions: [{
+            questions: {
                 1: {
                     id: 1,
                     answer: "26",
@@ -65,7 +65,7 @@ describe('Questions Reducer Test', () => {
                     created_at: "2016-11-23T15:32:47.917Z",
                     updated_at: "2016-11-23T15:32:47.917Z"
                 }
-            }],
+            },
             question: {},
             validatedAnswer: {}
         };

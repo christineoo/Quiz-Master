@@ -74,6 +74,7 @@ class ManageQuestionsContainer extends Component {
     };
 
     render() {
+        const { isPending } = this.props;
         return (
             <div style={{paddingTop: '70px'}}>
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
@@ -101,20 +102,23 @@ class ManageQuestionsContainer extends Component {
                     onSubmitClick={this.handleDeleteSubmit}
                     onDeleteDialogClose={() => this.setState({openDeleteDialog: false})}
                 />
-                <QuestionsList
-                    questions={this.props.questions}
-                    onUpdateQuestionClick={this.handleUpdateQuestion}
-                    onDeleteQuestionClick={this.handleDeleteQuestion}
-                />
+                {isPending ? <div></div> :
+                    <QuestionsList
+                        questions={this.props.questions}
+                        onUpdateQuestionClick={this.handleUpdateQuestion}
+                        onDeleteQuestionClick={this.handleDeleteQuestion}
+                    />
+                }
             </div>
         )
     }
 }
 
 const stateToProps = state => {
-    const {questions} = state.questions;
+    const {isPending, questions} = state.questions;
 
     return {
+        isPending,
         questions
     }
 };

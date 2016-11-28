@@ -4,7 +4,7 @@ import {
 
 const initState = {
     isPending: false,
-    questions: [],
+    questions: {},
     question: {},
     validatedAnswer: {}
 };
@@ -20,7 +20,7 @@ const questions = function(state = initState, action = null) {
         case RECEIVE_QUESTIONS:
             return Object.assign({}, state, {
                 isPending: false,
-                questions: [action.questions]
+                questions: action.questions
             });
 
         case RECEIVE_QUIZ_QUESTION:
