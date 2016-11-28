@@ -6,6 +6,7 @@
   "scripts": {
     "start": " webpack-dev-server --config webpack.config.js --hot --progress --inline --colors",
     "test": "mocha './src/app/test/**/*.spec.js' --require ignore-styles --compilers js:babel-core/register",
+    "debug": "mocha './src/app/test/**/*.spec.js' debug --compilers js:babel-core/register",
     "clean": "rimraf public",
     "build:webpack": "NODE_ENV='production' webpack -p --config webpack.config.js",
     "build": "npm run clean && npm run build:webpack",
