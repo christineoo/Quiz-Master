@@ -14,7 +14,6 @@ import {
     createWithContent,
     ContentState
 } from 'draft-js';
-import { stateFromHTML } from 'draft-js-import-html';
 import CreateQuestion from '../../components/question/CreateQuestion';
 import BlockStyleControls from '../../components/common/Editor/BlockStyleControls';
 import InlineStyleControls from '../../components/common/Editor/InlineStyleControls';

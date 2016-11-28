@@ -109,7 +109,6 @@ class New extends Component {
     };
 
     render() {
-        console.log(this.state.answer)
         const actions = [
             <FlatButton
                 label={'Cancel'}
