@@ -3,17 +3,7 @@ import {connect} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { AppBar, FlatButton, LinearProgress } from 'material-ui';
 import { hashHistory } from 'react-router'
-
-const MainAppBar = (props) => (
-    <AppBar style={{position: 'fixed'}}
-        title="Quiz Master"
-        iconElementRight={props.pathname !== '/home'
-                        ? <FlatButton label="back to home" onTouchTap={props.onTitleTouchTap} />
-                        : null
-        }
-        showMenuIconButton={false}
-    />
-);
+import MainAppBar from '../components/common/MainAppBar';
 
 MainAppBar.propTypes = {
     onTitleTouchTap: PropTypes.func.isRequired,
