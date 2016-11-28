@@ -7,6 +7,7 @@ import {stateFromHTML} from 'draft-js-import-html';
 import {Editor, EditorState, createWithContent} from 'draft-js';
 import { hashHistory } from 'react-router'
 import {startQuiz, submitAnswer,getNextQuestion} from '../actions/questions';
+import QuizComponent from '../components/QuizComponent';
 
 class QuizContainer extends Component {
 
@@ -22,32 +23,8 @@ class QuizContainer extends Component {
         this.props.startQuiz();
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.question != nextProps.question) {
-            // let contentState = stateFromHTML(nextProps.selectedQuestion.content);
-            // this.setState({
-            //     content: nextProps.selectedQuestion.content,
-            //     answer: nextProps.selectedQuestion.answer,
-            //     editorState: EditorState.createWithContent(contentState)
-            // });
-        }
-    }
-
-    onAnswerChange = (event) => {
-        this.setState({
-            inputAnswer: event.target.value,
-            errorMessage: ''
-        });
-
-        if (!event.target.value) {
-            this.setState({
-                errorMessage: 'This field is required.'
-            })
-        }
-    };
-
-    handleSubmitAnswer = () => {
-        this.props.submitAnswer(this.props.question.id, this.state.inputAnswer)
+    handleSubmitAnswer = (inputAnswer) => {
+        this.props.submitAnswer(this.props.question.id, inputAnswer)
     };
 
     handleFinishQuiz = () => {
@@ -62,57 +39,14 @@ class QuizContainer extends Component {
         })
     };
 
-    renderNextQuestionOrFinishButton = () => {
-        const { validatedAnswer } = this.props;
-        if(!validatedAnswer.next_question_id){
-            return (<RaisedButton label="Quiz Finish"
-                                  secondary={true}
-                                  style={{margin: '10px 100px'}}
-                                  onTouchTap={this.handleFinishQuiz}/>)
-        }
-        return (<RaisedButton label="Next Question"
-                              secondary={true}
-                              style={{alignSelf: 'flex-end', margin: '10px 100px'}}
-                              onTouchTap={this.handleNextQuestion}/>)
-    };
-
-    renderValidatedResult = () => {
-        const { validatedAnswer } = this.props;
-
-        if (validatedAnswer.result === 'error') {
-            return (
-                <div className="validated-answer incorrect">
-                    <FontIcon className="material-icons" color='#F56134'>clear</FontIcon>
-                    {`Your answer is incorrect. Correct answer is ${validatedAnswer.expected}.`}
-                </div>
-            )
-        }
-        else {
-            return (
-                <div className="validated-answer correct">
-                    <FontIcon className="material-icons" color='#58AD3F'>done</FontIcon>
-                    Your answer is correct.
-                </div>
-            )
-        }
-    };
-
-    renderCardAction = () => {
-        return (
-            <CardActions>
-                <RaisedButton label="Submit"
-                              secondary={true}
-                              disabled={this.state.inputAnswer === ''}
-                              onTouchTap={this.handleSubmitAnswer}/>
-            </CardActions>
-        )
-    };
-
     render() {
         const { isPending, question, validatedAnswer } = this.props
         console.log('question: ', question)
         console.log('validatedAnswer: ', validatedAnswer)
-        if (Object.keys(question).length == 0) {
+        if(isPending) {
+            return (<div></div>)
+        }
+        else if (Object.keys(question).length == 0) {
             return (<CenteredView>No questions created yet~!</CenteredView>)
         }
         // else if (!isPending && Object.keys(question).length > 0) {
@@ -122,31 +56,14 @@ class QuizContainer extends Component {
             return (
                 <div>
                     <CenteredView>
-                        <Card style={{ minWidth: '500px' }}>
-                            <CardText>
-                                <div className="RichEditor-editor">
-                                    <Editor
-                                        editorState={editorState}
-                                        ref="editor"
-                                        readOnly={true}
-                                    />
-                                    <TextField fullWidth
-                                               value={this.state.inputAnswer}
-                                               floatingLabelText={'Answer'}
-                                               onChange={this.onAnswerChange}
-                                               errorText={this.state.errorMessage}
-                                    />
-                                </div>
-                                {Object.keys(validatedAnswer).length > 0
-                                    ? this.renderValidatedResult()
-                                    : this.renderCardAction()
-                                }
-                            </CardText>
-                        </Card>
-                        {Object.keys(validatedAnswer).length > 0 ? this.renderNextQuestionOrFinishButton() : null}
+                        <QuizComponent validatedAnswer={validatedAnswer}
+                                       question={question}
+                                       onQuizFinishClick={this.handleFinishQuiz}
+                                       onNextQuestionClick={this.handleNextQuestion}
+                                       onSubmitAnswerClick={this.handleSubmitAnswer}/>
                     </CenteredView>
                 </div>
-            )
+            );
         }
     }
 }
