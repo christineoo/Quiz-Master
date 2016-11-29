@@ -137,6 +137,7 @@ class CreateQuestion extends Component {
                 title="Create New Question"
                 open={this.props.openCreateDialog}
                 onRequestClose={this.handleClose}
+                modal={true}
                 actions={actions}
                 autoScrollBodyContent={true}
             >
