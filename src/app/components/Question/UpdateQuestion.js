@@ -30,7 +30,7 @@ function getBlockStyle(block) {
 }
 //text editor's code ends
 
-class UpdateQuestion extends Component {
+class Edit extends Component {
 
     static propTypes = {
         selectedQuestion: PropTypes.object.isRequired,
@@ -200,4 +200,4 @@ class UpdateQuestion extends Component {
     }
 }
 
-export default UpdateQuestion;
+export default Edit;

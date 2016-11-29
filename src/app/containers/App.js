@@ -5,11 +5,6 @@ import { AppBar, FlatButton, LinearProgress } from 'material-ui';
 import { hashHistory } from 'react-router'
 import MainAppBar from '../components/common/MainAppBar';
 
-MainAppBar.propTypes = {
-    onTitleTouchTap: PropTypes.func.isRequired,
-    pathname: PropTypes.string.isRequired
-};
-
 class App extends Component {
     handleTouchTap = () => {
         hashHistory.push('/home');
@@ -25,7 +20,7 @@ class App extends Component {
         return (
             <MuiThemeProvider>
                 <div style={{height: '100%'}}>
-                    <MainAppBar onTitleTouchTap={this.handleTouchTap} pathname={this.props.location.pathname} />
+                    <MainAppBar onBackButtonClick={this.handleTouchTap} pathname={this.props.location.pathname} />
                     {loadingProgress}
                     {children}
                 </div>
