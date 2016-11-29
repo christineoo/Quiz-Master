@@ -8,6 +8,13 @@ export function requestRemoteAction() {
     };
 }
 
+export const REQUEST_QUIZ_QUESTION = 'REQUEST_QUIZ_QUESTION';
+export function requestQuizQuestion() {
+    return {
+        type: REQUEST_QUIZ_QUESTION
+    }
+}
+
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export function receiveQuestions(questions){
     return {
@@ -108,7 +115,7 @@ export function quizQuestionReceived(question) {
 
 export function startQuiz() {
     return (dispatch) => {
-        dispatch(requestRemoteAction());
+        dispatch(requestQuizQuestion());
         Api.get('start_quiz')
             .then(res => {
                 if(res.ok) {
@@ -123,7 +130,7 @@ export function startQuiz() {
 
 export function getNextQuestion(id) {
     return (dispatch) => {
-        dispatch(requestRemoteAction());
+        dispatch(requestQuizQuestion());
         Api.get(`questions/${id}`)
             .then(res => {
                 if (res.ok) {

@@ -20,6 +20,15 @@ class QuizComponent extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.question != nextProps.question) {
+            this.setState({
+                inputAnswer: '',
+                errorMessage: ''
+            })
+        }
+    }
+
     onAnswerChange = (event) => {
         this.setState({
             inputAnswer: event.target.value,
@@ -35,16 +44,20 @@ class QuizComponent extends Component {
 
     renderNextQuestionOrFinishButton = () => {
         const {validatedAnswer} = this.props;
+
         if (!validatedAnswer.next_question_id) {
-            return (<RaisedButton label="Quiz Finish"
-                                  secondary={true}
-                                  style={{display: 'flex'}}
-                                  onTouchTap={this.props.onQuizFinishClick}/>)
-        }
-        return (<RaisedButton label="Next Question"
+            return (<CardActions>
+                <RaisedButton label="Quiz Finish"
                               secondary={true}
-                              style={{display: 'flex'}}
-                              onTouchTap={this.props.onNextQuestionClick}/>)
+                              onTouchTap={this.props.onQuizFinishClick}/>)
+            </CardActions>)
+        }
+        return (<CardActions>
+            <RaisedButton label="Next Question"
+                          secondary={true}
+                          onTouchTap={this.props.onNextQuestionClick}/>)
+
+        </CardActions>)
     };
 
     renderValidatedResult = () => {
@@ -85,9 +98,14 @@ class QuizComponent extends Component {
         const {question, validatedAnswer} = this.props;
         let contentState = stateFromHTML(question.content);
         let editorState = EditorState.createWithContent(contentState);
+        const cardStyle = {
+            margin: '10px 0',
+            maxWidth: '800px',
+            minWidth: '400px'
+        };
         return (
             <div>
-                <Card style={{minWidth: '500px'}}>
+                <Card style={cardStyle}>
                     <CardText>
                         <div className="RichEditor-editor">
                             <Editor
@@ -97,7 +115,7 @@ class QuizComponent extends Component {
                             />
                             <TextField fullWidth
                                        floatingLabelFixed={true}
-                                       value={!validatedAnswer ? this.state.inputAnswer : validatedAnswer.input_answer}
+                                       value={this.state.inputAnswer}
                                        floatingLabelText={'Answer'}
                                        onChange={this.onAnswerChange}
                                        errorText={this.state.errorMessage}
@@ -107,9 +125,9 @@ class QuizComponent extends Component {
                             ? this.renderValidatedResult()
                             : this.renderCardAction()
                         }
+                        {Object.keys(validatedAnswer).length > 0 ? this.renderNextQuestionOrFinishButton() : null}
                     </CardText>
                 </Card>
-                {Object.keys(validatedAnswer).length > 0 ? this.renderNextQuestionOrFinishButton() : null}
             </div>
         )
     }

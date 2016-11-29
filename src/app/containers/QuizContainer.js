@@ -11,14 +11,6 @@ import QuizComponent from '../components/QuizComponent';
 
 class QuizContainer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            inputAnswer: '',
-            errorMessage: ''
-        }
-    }
-
     componentWillMount() {
         this.props.startQuiz();
     }
@@ -34,27 +26,21 @@ class QuizContainer extends Component {
     handleNextQuestion = () => {
         const { validatedAnswer } = this.props;
         this.props.nextQuestion(validatedAnswer.next_question_id);
-        this.setState({
-            inputAnswer: ''
-        })
     };
 
     render() {
         const { isPending, question, validatedAnswer } = this.props
         console.log('question: ', question)
         console.log('validatedAnswer: ', validatedAnswer)
-        if(isPending) {
+        if(isPending && Object.keys(question).length == 0){
             return (<div></div>)
         }
-        else if (Object.keys(question).length == 0) {
+         else if (Object.keys(question).length == 0 && !isPending) {
             return (<CenteredView>No questions created yet~!</CenteredView>)
         }
-        // else if (!isPending && Object.keys(question).length > 0) {
         else {
-            let contentState = stateFromHTML(question.content);
-            let editorState = EditorState.createWithContent(contentState);
             return (
-                <div>
+                <div className="container">
                     <CenteredView>
                         <QuizComponent validatedAnswer={validatedAnswer}
                                        question={question}
