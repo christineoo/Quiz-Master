@@ -10,7 +10,7 @@ class Home extends Component {
     render() {
 
         return (
-            <div className="container">
+            <div className="home-container">
                 <RaisedButton className="button"
                               label="Manage Questions Mode"
                               primary={true}
