@@ -3,7 +3,7 @@ import {AppBar, FlatButton} from 'material-ui';
 
 
 const MainAppBar = (props) => (
-    <AppBar style={{position: 'fixed'}}
+    <AppBar style={{position: 'fixed', backgroundColor: '#31303E'}}
             title="Quiz Master"
             iconElementRight={props.pathname !== '/home'
                 ? <FlatButton label="back to home" onTouchTap={props.onBackButtonClick}/>
