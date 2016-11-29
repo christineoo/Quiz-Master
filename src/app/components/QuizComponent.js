@@ -100,7 +100,7 @@ class QuizComponent extends Component {
         let editorState = EditorState.createWithContent(contentState);
         const cardStyle = {
             margin: '10px 0',
-            maxWidth: '800px',
+            maxWidth: '700px',
             minWidth: '400px'
         };
         return (
