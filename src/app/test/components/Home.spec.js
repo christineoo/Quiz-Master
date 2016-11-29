@@ -38,7 +38,7 @@ describe('Home Component', () => {
                               onManageQuestionModeClick={handleManageQuestionModeClick} />);
         const actual = renderer.getRenderOutput();
         const expected = (
-            <div className="container">
+            <div className="home-container">
                 <RaisedButton
                     className="button"
                     label="Manage Questions Mode"

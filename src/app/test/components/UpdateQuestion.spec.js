@@ -30,7 +30,7 @@ describe('Update Question Component', () => {
     };
     const props = {
         selectedQuestion: question,
-        openUpdateDialog: false,
+        openUpdateDialog: true,
         onUpdateDialogClose: sinon.spy(),
         onUpdateClick: sinon.spy()
     };
@@ -155,5 +155,4 @@ describe('Update Question Component', () => {
         // Check if Update button still remains disabled after setState
         expect(wrapper.find(Dialog).node.props.actions[1].props.disabled).toEqual(true);
     });
-
 });

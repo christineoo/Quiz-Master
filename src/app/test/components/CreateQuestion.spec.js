@@ -66,6 +66,7 @@ describe('Create Question Component', () => {
                 title="Create New Question"
                 open={true}
                 onRequestClose={sinon.spy()}
+                modal={true}
                 actions={[
                     <FlatButton
                         label={'Cancel'}
