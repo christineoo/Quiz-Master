@@ -76,9 +76,9 @@ class ManageQuestionsContainer extends Component {
     render() {
         const { isPending } = this.props;
         return (
-            <div style={{paddingTop: '70px'}}>
+            <div className="container">
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <FloatingActionButton style={{position: 'fixed', right: '20px'}}
+                    <FloatingActionButton style={{position: 'fixed', right: '20px', zIndex: '10'}}
                                           secondary={true}
                                           onTouchTap={this.handleAddQuestion}
                     >
