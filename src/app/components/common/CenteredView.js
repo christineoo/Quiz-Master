@@ -30,7 +30,8 @@ class CenteredView extends Component {
             justifyContent: 'center',
             alignItems: 'center',
             minHeight: '500px',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            overflow: 'auto'
         };
 
         return (
