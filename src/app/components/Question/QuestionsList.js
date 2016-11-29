@@ -14,7 +14,6 @@ class QuestionsList extends Component {
     render() {
         const {questions} = this.props;
         const QuestionListStyle = {
-            // paddingTop: '70px',
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'column'
@@ -28,16 +27,15 @@ class QuestionsList extends Component {
                     {Object.keys(questions).map((key) => {
                         const cardStyle = {
                             margin: '10px 0',
-                            maxWidth: '400px',
-                            minWidth: '400px'
-
+                            maxWidth: '700px',
+                            minWidth: '700px'
                         };
                         let contentState = stateFromHTML(questions[key].content);
                         let editorState = EditorState.createWithContent(contentState);
 
                         return (
                             <Card style={cardStyle} key={questions[key].id}>
-                                <CardText>
+                                <CardText style={{padding: '0px 16px'}}>
                                     <div className="RichEditor-editor">
                                         <Editor
                                             editorState={editorState}
