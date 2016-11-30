@@ -20,15 +20,6 @@ class QuizComponent extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.question != nextProps.question) {
-            this.setState({
-                inputAnswer: '',
-                errorMessage: ''
-            })
-        }
-    }
-
     onAnswerChange = (event) => {
         this.setState({
             inputAnswer: event.target.value,

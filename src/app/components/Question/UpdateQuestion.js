@@ -56,11 +56,8 @@ class Edit extends Component {
                 editorState: editorState,
                 content: html
             });
-        }
+        };
         this.focus = () => this.refs.editor.focus();
-        this.handleKeyCommand = (command) => this._handleKeyCommand(command);
-        this.toggleBlockType = (type) => this._toggleBlockType(type);
-        this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -74,7 +71,7 @@ class Edit extends Component {
         }
     }
 
-    _handleKeyCommand(command) {
+    handleKeyCommand = (command) => {
         const {editorState} = this.state;
         const newState = RichUtils.handleKeyCommand(editorState, command);
         if (newState) {
@@ -82,25 +79,25 @@ class Edit extends Component {
             return true;
         }
         return false;
-    }
+    };
 
-    _toggleBlockType(blockType) {
+    toggleBlockType = (blockType) => {
         this.onChange(
             RichUtils.toggleBlockType(
                 this.state.editorState,
                 blockType
             )
         );
-    }
+    };
 
-    _toggleInlineStyle(inlineStyle) {
+    toggleInlineStyle = (inlineStyle) =>{
         this.onChange(
             RichUtils.toggleInlineStyle(
                 this.state.editorState,
                 inlineStyle
             )
         );
-    }
+    };
 
     handleCancel = () => {
         // reset the states to original state onDialog cancel
