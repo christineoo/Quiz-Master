@@ -3,14 +3,17 @@ import {
     RECEIVE_QUESTIONS,
     RECEIVE_QUIZ_QUESTION,
     SHOW_VALIDATED_ANSWER,
-    RESET_QUIZ_QUESTION_AND_ANSWER
+    RESET_QUIZ_QUESTION_AND_ANSWER,
+    RECEIVE_ERROR_MESSAGE
 } from '../constants/ActionTypes'
 
 const initState = {
     isPending: false,
     questions: {},
     question: {},
-    validatedAnswer: {}
+    validatedAnswer: {},
+    errorMessage: '',
+    error: false
 };
 
 const questions = function(state = initState, action = null) {
@@ -30,20 +33,33 @@ const questions = function(state = initState, action = null) {
         case RECEIVE_QUESTIONS:
             return Object.assign({}, state, {
                 isPending: false,
-                questions: action.questions
+                questions: action.questions,
+                errorMessage: '',
+                error: false
             });
 
         case RECEIVE_QUIZ_QUESTION:
             return Object.assign({}, state, {
                 isPending: false,
                 question: action.question,
-                validatedAnswer: {}
+                validatedAnswer: {},
+                errorMessage: '',
+                error: false
             });
 
         case SHOW_VALIDATED_ANSWER:
             return Object.assign({}, state, {
                 isPending: false,
-                validatedAnswer: action.res
+                validatedAnswer: action.res,
+                errorMessage: '',
+                error: false
+            });
+
+        case RECEIVE_ERROR_MESSAGE:
+            return Object.assign({}, state, {
+                isPending: false,
+                errorMessage: action.errorMessage,
+                error: true
             });
 
         default:

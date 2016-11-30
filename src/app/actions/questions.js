@@ -1,6 +1,8 @@
-import Api from '../api'
 import * as types from '../constants/ActionTypes';
 import { Schema, arrayOf, normalize } from 'normalizr';
+import axios from 'axios';
+
+const API_ROOT = "https://quiz-master-test.herokuapp.com/api/v1";
 
 export function requestRemoteAction() {
     return {
@@ -35,77 +37,77 @@ export function quizQuestionReceived(question) {
     }
 }
 
+export function receiveError(errorMessage) {
+    return {
+        type: types.RECEIVE_ERROR_MESSAGE,
+        errorMessage
+    }
+}
+
 export function loadQuestions() {
     return (dispatch) => {
         dispatch(requestRemoteAction());
 
-        Api.get('questions')
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
+        return axios.get(`${API_ROOT}/questions`)
+            .then((response) => {
+                const normalized = normalize(response.data, arrayOf(new Schema('questions')));
+                dispatch(receiveQuestions(normalized.entities.questions));
             })
-            .then((json) => {
-                if (json.length > 0) {
-                    const normalized = normalize(json, arrayOf(new Schema('questions')));
-                    dispatch(receiveQuestions(normalized.entities.questions));
-                }
-                else {
-                    dispatch(receiveQuestions({}));
-                }
-            })
+            .catch((error) => {
+                dispatch(receiveError(error.message));
+            });
     }
 }
 
 export function createQuestion(newQuestion) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
-        Api.post('questions', newQuestion)
-            .then(res => {
-                if(res.ok) {
-                    dispatch(loadQuestions())
-                }
+        return axios.post(`${API_ROOT}/questions`, newQuestion)
+            .then((response) => {
+                dispatch(loadQuestions())
             })
+            .catch((error) => {
+                dispatch(receiveError(error.message));
+            });
     }
 }
 
 export function updateQuestion(updatedQuestion) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
-        Api.put(`questions/${updatedQuestion.id}`, updatedQuestion)
-            .then(res => {
-                if(res.ok) {
-                    dispatch(loadQuestions())
-                }
+        return axios.put(`${API_ROOT}/questions/${updatedQuestion.id}`, updatedQuestion)
+            .then((response) => {
+                dispatch(loadQuestions())
             })
+            .catch((error) => {
+                dispatch(receiveError(error.message));
+            });
     }
 }
 
 export function deleteQuestion(id) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
-        console.log('delete question id: ', id);
-        Api.delete(`questions/${id}`)
-            .then(res => {
-                if(res.ok) {
-                    dispatch(loadQuestions())
-                }
+        return axios.delete(`${API_ROOT}/questions/${id}`)
+            .then(() => {
+                dispatch(loadQuestions())
             })
+            .catch((error) => {
+                dispatch(receiveError(error.message));
+            });
     }
 }
 
 export function submitAnswer(id, inputAnswer) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
-        Api.post(`check_answer/${id}`, {inputAnswer: inputAnswer})
-            .then(res => {
-                if(res.ok) {
-                    return res.json()
-                }
+        return axios.post(`${API_ROOT}/check_answer/${id}`, {inputAnswer: inputAnswer})
+            .then((response) => {
+                dispatch(showValidatedAnswer(response.data))
             })
-            .then((json) => {
-                dispatch(showValidatedAnswer(json))
-            })
+            .catch((error) => {
+                dispatch(receiveError(error.message));
+            });
     }
 }
 
@@ -113,15 +115,13 @@ export function startQuiz() {
     return (dispatch) => {
         dispatch(requestRemoteAction());
         dispatch(resetQuizQuestionAndAnswer());
-        Api.get('start_quiz')
-            .then(res => {
-                if(res.ok) {
-                    return res.json();
-                }
+        return axios.get(`${API_ROOT}/start_quiz`)
+            .then((response) => {
+                dispatch(quizQuestionReceived(response.data))
             })
-            .then((json) => {
-                dispatch(quizQuestionReceived(json))
-            })
+            .catch((error) => {
+                dispatch(receiveError(error.message));
+            });
     }
 }
 
@@ -129,14 +129,12 @@ export function getNextQuestion(id) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
         dispatch(resetQuizQuestionAndAnswer());
-        Api.get(`questions/${id}`)
-            .then(res => {
-                if (res.ok) {
-                    return res.json()
-                }
+        return axios.get(`${API_ROOT}/questions/${id}`)
+            .then((response) => {
+                dispatch(quizQuestionReceived(response.data))
             })
-            .then((json) => {
-                dispatch(quizQuestionReceived(json))
-            })
+            .catch((error) => {
+                dispatch(receiveError(error.message));
+            });
     }
 }
