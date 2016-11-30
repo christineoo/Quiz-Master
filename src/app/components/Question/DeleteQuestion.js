@@ -50,9 +50,9 @@ class DeleteQuestion extends Component {
                 actions={actions}
                 autoScrollBodyContent={true}
             >
-                <p>Question: </p>
+                <p><strong>Question:</strong></p>
                 <p dangerouslySetInnerHTML={{__html: this.props.selectedQuestion.content}} />
-                <p>Answer: </p>
+                <p><strong>Answer:</strong></p>
                 <p>{this.props.selectedQuestion.answer}</p>
             </Dialog>
         )
