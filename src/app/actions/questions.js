@@ -1,25 +1,37 @@
 import Api from '../api'
+import * as types from '../constants/ActionTypes';
 import { Schema, arrayOf, normalize } from 'normalizr';
 
-export const REQUEST_REMOTE_ACTION = 'REQUEST_REMOTE_ACTION';
 export function requestRemoteAction() {
     return {
-        type: REQUEST_REMOTE_ACTION
+        type: types.REQUEST_REMOTE_ACTION
     };
 }
 
-export const REQUEST_QUIZ_QUESTION = 'REQUEST_QUIZ_QUESTION';
-export function requestQuizQuestion() {
+export function resetQuizQuestionAndAnswer() {
     return {
-        type: REQUEST_QUIZ_QUESTION
+        type: types.RESET_QUIZ_QUESTION_AND_ANSWER
     }
 }
 
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export function receiveQuestions(questions){
     return {
-        type: RECEIVE_QUESTIONS,
+        type: types.RECEIVE_QUESTIONS,
         questions
+    }
+}
+
+export function showValidatedAnswer(res){
+    return {
+        type: types.SHOW_VALIDATED_ANSWER,
+        res
+    }
+}
+
+export function quizQuestionReceived(question) {
+    return {
+        type: types.RECEIVE_QUIZ_QUESTION,
+        question
     }
 }
 
@@ -82,14 +94,6 @@ export function deleteQuestion(id) {
     }
 }
 
-export const SHOW_VALIDATED_ANSWER = 'SHOW_VALIDATED_ANSWER';
-export function showValidatedAnswer(res){
-    return {
-        type: SHOW_VALIDATED_ANSWER,
-        res
-    }
-}
-
 export function submitAnswer(id, inputAnswer) {
     return (dispatch) => {
         dispatch(requestRemoteAction());
@@ -105,17 +109,10 @@ export function submitAnswer(id, inputAnswer) {
     }
 }
 
-export const RECEIVE_QUIZ_QUESTION = 'RECEIVE_QUIZ_QUESTION';
-export function quizQuestionReceived(question) {
-    return {
-        type: RECEIVE_QUIZ_QUESTION,
-        question
-    }
-}
-
 export function startQuiz() {
     return (dispatch) => {
-        dispatch(requestQuizQuestion());
+        dispatch(requestRemoteAction());
+        dispatch(resetQuizQuestionAndAnswer());
         Api.get('start_quiz')
             .then(res => {
                 if(res.ok) {
@@ -130,7 +127,8 @@ export function startQuiz() {
 
 export function getNextQuestion(id) {
     return (dispatch) => {
-        dispatch(requestQuizQuestion());
+        dispatch(requestRemoteAction());
+        dispatch(resetQuizQuestionAndAnswer());
         Api.get(`questions/${id}`)
             .then(res => {
                 if (res.ok) {

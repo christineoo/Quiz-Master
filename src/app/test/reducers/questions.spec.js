@@ -1,24 +1,44 @@
 import expect from 'expect';
 import questionReducer from '../../reducers/questions';
-import { REQUEST_REMOTE_ACTION, RECEIVE_QUESTIONS, RECEIVE_QUIZ_QUESTION, SHOW_VALIDATED_ANSWER } from '../../actions/questions';
+import {
+    REQUEST_REMOTE_ACTION,
+    RECEIVE_QUESTIONS,
+    RECEIVE_QUIZ_QUESTION,
+    SHOW_VALIDATED_ANSWER,
+    RESET_QUIZ_QUESTION_AND_ANSWER
+} from '../../constants/ActionTypes';
 
 describe('Questions Reducer Test', () => {
     function initState() {
         return {
             isPending: false,
-            questions: [],
+            questions: {},
             question: {},
             validatedAnswer: {}
         }
     }
+    const questions = {
+        1: {
+            id: 1,
+            answer: "26",
+            content: "<p>How many letters are there in the <code><strong>English</strong></code> alphabet?</p>",
+            created_at: "2016-11-23T15:32:47.917Z",
+            updated_at: "2016-11-23T15:32:47.917Z"
+        },
+        2: {
+            id: 2,
+            answer: "2",
+            content: "<p>How many vowels are there in the <code><strong>English</strong></code> alphabet?</p>",
+            created_at: "2016-11-23T15:32:47.917Z",
+            updated_at: "2016-11-23T15:32:47.917Z"
+        }
+    };
     it('should return initial state', () => {
-        const action = {
-            null
-        };
-        const actual = questionReducer(initState(), action);
+        const action = {};
+        const actual = questionReducer(undefined, action);
         const expected = {
             isPending: false,
-            questions: [],
+            questions: {},
             question: {},
             validatedAnswer: {}
         };
@@ -26,22 +46,6 @@ describe('Questions Reducer Test', () => {
     });
 
     it('should return array of questions', () => {
-        const questions = {
-            1: {
-                id: 1,
-                answer: "26",
-                content: "<p>How many letters are there in the <code><strong>English</strong></code> alphabet?</p>",
-                created_at: "2016-11-23T15:32:47.917Z",
-                updated_at: "2016-11-23T15:32:47.917Z"
-            },
-            2: {
-                id: 2,
-                answer: "2",
-                content: "<p>How many vowels are there in the <code><strong>English</strong></code> alphabet?</p>",
-                created_at: "2016-11-23T15:32:47.917Z",
-                updated_at: "2016-11-23T15:32:47.917Z"
-            }
-        };
         const action = {
             type: RECEIVE_QUESTIONS,
             questions
@@ -50,22 +54,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(initState(), action);
         const expected = {
             isPending: false,
-            questions: {
-                1: {
-                    id: 1,
-                    answer: "26",
-                    content: "<p>How many letters are there in the <code><strong>English</strong></code> alphabet?</p>",
-                    created_at: "2016-11-23T15:32:47.917Z",
-                    updated_at: "2016-11-23T15:32:47.917Z"
-                },
-                2: {
-                    id: 2,
-                    answer: "2",
-                    content: "<p>How many vowels are there in the <code><strong>English</strong></code> alphabet?</p>",
-                    created_at: "2016-11-23T15:32:47.917Z",
-                    updated_at: "2016-11-23T15:32:47.917Z"
-                }
-            },
+            questions: questions,
             question: {},
             validatedAnswer: {}
         };
@@ -79,11 +68,37 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(initState(), action);
         const expected = {
             isPending: true,
-            questions: [],
+            questions: {},
             question: {},
             validatedAnswer: {}
         };
         expect(actual).toEqual(expected)
+    });
+
+    it('should reset quiz question and validated answer', () => {
+       const action = {
+           type: RESET_QUIZ_QUESTION_AND_ANSWER
+       } ;
+        function beforeState() {
+            return {
+                isPending: false,
+                questions: questions,
+                question: questions[1],
+                validatedAnswer: {
+                    result: "ok",
+                    expected: "26",
+                    next_question_id: 2
+                }
+            }
+        }
+       const actual = questionReducer(beforeState(), action);
+        const expected = {
+            isPending: false,
+            questions: questions,
+            question: {},
+            validatedAnswer: {}
+        }
+       expect(actual).toEqual(expected)
     });
 
     it('should assign question received to question', () => {
@@ -98,7 +113,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(initState(), action);
         const expected = {
             isPending: false,
-            questions: [],
+            questions: {},
             question: {
                 id: 1,
                 content: "<p>How many letters are there in the <code><strong>English</strong></code> alphabet?</p>",
@@ -116,7 +131,7 @@ describe('Questions Reducer Test', () => {
         function beforeState() {
             return {
                 isPending: false,
-                questions: [],
+                questions: {},
                 question: question,
                 validatedAnswer: {}
             }
@@ -133,7 +148,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(beforeState(), action);
         const expected = {
             isPending: false,
-            questions: [],
+            questions: {},
             question: question,
             validatedAnswer: {
                 result: "ok",

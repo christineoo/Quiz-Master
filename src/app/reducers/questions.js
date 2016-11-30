@@ -1,11 +1,10 @@
 import {
     REQUEST_REMOTE_ACTION,
-    REQUEST_QUIZ_QUESTION,
     RECEIVE_QUESTIONS,
-    RECEIVE_START_QUESTION,
     RECEIVE_QUIZ_QUESTION,
-    SHOW_VALIDATED_ANSWER
-} from '../actions/questions'
+    SHOW_VALIDATED_ANSWER,
+    RESET_QUIZ_QUESTION_AND_ANSWER
+} from '../constants/ActionTypes'
 
 const initState = {
     isPending: false,
@@ -22,9 +21,8 @@ const questions = function(state = initState, action = null) {
                 isPending: true
             });
 
-        case REQUEST_QUIZ_QUESTION:
+        case RESET_QUIZ_QUESTION_AND_ANSWER:
             return Object.assign({}, state, {
-                isPending: true,
                 question: {},
                 validatedAnswer: {}
             });

@@ -1,6 +1,11 @@
 import expect from 'expect';
 import {requestRemoteAction, receiveQuestions, showValidatedAnswer} from '../../actions/questions';
-import {REQUEST_REMOTE_ACTION, RECEIVE_QUESTIONS, SHOW_VALIDATED_ANSWER} from '../../actions/questions';
+import {
+    REQUEST_REMOTE_ACTION,
+    RECEIVE_QUESTIONS,
+    RECEIVE_QUIZ_QUESTION,
+    SHOW_VALIDATED_ANSWER
+} from '../../constants/ActionTypes';
 
 describe('Question Actions Test', () => {
     it('trigger remote action', () => {
