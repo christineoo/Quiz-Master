@@ -63,9 +63,9 @@ describe('Delete Question Component', () => {
                     onTouchTap={handleOnSubmitClick} />]}
                 autoScrollBodyContent={true}
             >
-                <p>Question: </p>
+                <p><strong>Question:</strong></p>
                 <p dangerouslySetInnerHTML={{__html: question.content}} />
-                <p>Answer: </p>
+                <p><strong>Answer:</strong></p>
                 <p>{question.answer}</p>
             </Dialog>
         );
