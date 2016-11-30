@@ -74,7 +74,7 @@ class ManageQuestionsContainer extends Component {
     };
 
     render() {
-        const { isPending } = this.props;
+        const { isPending, error } = this.props;
         return (
             <div className="container">
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
@@ -102,7 +102,7 @@ class ManageQuestionsContainer extends Component {
                     onSubmitClick={this.handleDeleteSubmit}
                     onDeleteDialogClose={() => this.setState({openDeleteDialog: false})}
                 />
-                {isPending ? <div></div> :
+                {isPending || error ? <div></div> :
                     <QuestionsList
                         questions={this.props.questions}
                         onUpdateQuestionClick={this.handleUpdateQuestion}
@@ -115,11 +115,12 @@ class ManageQuestionsContainer extends Component {
 }
 
 const stateToProps = state => {
-    const {isPending, questions} = state.questions;
+    const {isPending, questions, error} = state.questions;
 
     return {
         isPending,
-        questions
+        questions,
+        error
     }
 };
 

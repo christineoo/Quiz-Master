@@ -14,7 +14,9 @@ describe('Questions Reducer Test', () => {
             isPending: false,
             questions: {},
             question: {},
-            validatedAnswer: {}
+            validatedAnswer: {},
+            errorMessage: '',
+            error: false
         }
     }
     const questions = {
@@ -40,7 +42,9 @@ describe('Questions Reducer Test', () => {
             isPending: false,
             questions: {},
             question: {},
-            validatedAnswer: {}
+            validatedAnswer: {},
+            errorMessage: '',
+            error: false
         };
         expect(actual).toEqual(expected)
     });
@@ -56,7 +60,9 @@ describe('Questions Reducer Test', () => {
             isPending: false,
             questions: questions,
             question: {},
-            validatedAnswer: {}
+            validatedAnswer: {},
+            errorMessage: '',
+            error: false
         };
         expect(actual).toEqual(expected)
     });
@@ -70,7 +76,9 @@ describe('Questions Reducer Test', () => {
             isPending: true,
             questions: {},
             question: {},
-            validatedAnswer: {}
+            validatedAnswer: {},
+            errorMessage: '',
+            error: false
         };
         expect(actual).toEqual(expected)
     });
@@ -88,7 +96,9 @@ describe('Questions Reducer Test', () => {
                     result: "ok",
                     expected: "26",
                     next_question_id: 2
-                }
+                },
+                errorMessage: '',
+                error: false
             }
         }
        const actual = questionReducer(beforeState(), action);
@@ -96,7 +106,9 @@ describe('Questions Reducer Test', () => {
             isPending: false,
             questions: questions,
             question: {},
-            validatedAnswer: {}
+            validatedAnswer: {},
+            errorMessage: '',
+            error: false
         }
        expect(actual).toEqual(expected)
     });
@@ -118,7 +130,9 @@ describe('Questions Reducer Test', () => {
                 id: 1,
                 content: "<p>How many letters are there in the <code><strong>English</strong></code> alphabet?</p>",
             },
-            validatedAnswer: {}
+            validatedAnswer: {},
+            errorMessage: '',
+            error: false
         };
         expect(actual).toEqual(expected)
     });
@@ -133,7 +147,9 @@ describe('Questions Reducer Test', () => {
                 isPending: false,
                 questions: {},
                 question: question,
-                validatedAnswer: {}
+                validatedAnswer: {},
+                errorMessage: '',
+                error: false
             }
         }
         const action = {
@@ -154,7 +170,9 @@ describe('Questions Reducer Test', () => {
                 result: "ok",
                 expected: "26",
                 next_question_id: 2
-            }
+            },
+            errorMessage: '',
+            error: false
         };
         expect(actual).toEqual(expected)
     });

@@ -29,13 +29,13 @@ class QuizContainer extends Component {
     };
 
     render() {
-        const { isPending, question, validatedAnswer } = this.props
+        const { isPending, question, validatedAnswer, error } = this.props
         console.log('question: ', question)
         console.log('validatedAnswer: ', validatedAnswer)
-        if(isPending && Object.keys(question).length == 0){
+        if(isPending && Object.keys(question).length == 0 || error){
             return (<div></div>)
         }
-         else if (Object.keys(question).length == 0 && !isPending) {
+         else if (Object.keys(question).length == 0 && !isPending && !error) {
             return (<CenteredView>No questions created yet~!</CenteredView>)
         }
         else {
@@ -55,12 +55,13 @@ class QuizContainer extends Component {
 }
 
 const stateToProps = state => {
-    const {isPending, question, validatedAnswer} = state.questions;
+    const {isPending, question, validatedAnswer, error} = state.questions;
 
     return {
         isPending,
         question,
-        validatedAnswer
+        validatedAnswer,
+        error
     }
 };
 

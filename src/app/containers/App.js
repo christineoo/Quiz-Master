@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { AppBar, FlatButton, LinearProgress, Dialog } from 'material-ui';
+import { AppBar, FlatButton, LinearProgress, Dialog, Snackbar } from 'material-ui';
 import { hashHistory } from 'react-router'
 import MainAppBar from '../components/common/MainAppBar';
 
@@ -37,8 +37,7 @@ class App extends Component {
     };
 
     render() {
-        const { children } = this.props;
-
+        const { children, error, errorMessage } = this.props;
         let loadingProgress = this.props.isPending
             ? <LinearProgress style={{position: 'fixed', zIndex: 1, top: '64px'}} mode="indeterminate"/>
             : null;
@@ -64,6 +63,13 @@ class App extends Component {
                 </Dialog>)
             : null;
 
+        let showErrorMessage = error
+            ? (<Snackbar open={error}
+                        message={errorMessage}
+                        autoHideDuration={4000}
+                />)
+            : null;
+
         return (
             <MuiThemeProvider>
                 <div style={{height: '100%'}}>
@@ -71,6 +77,7 @@ class App extends Component {
                     {loadingProgress}
                     {children}
                     {confirmDialog}
+                    {showErrorMessage}
                 </div>
             </MuiThemeProvider>
         )
@@ -78,10 +85,12 @@ class App extends Component {
 }
 
 const stateToProps = state => {
-    const {isPending} = state.questions;
+    const {isPending, errorMessage, error} = state.questions;
 
     return {
-        isPending
+        isPending,
+        errorMessage,
+        error
     }
 };
 
