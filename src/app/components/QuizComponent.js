@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import {Card, CardText, CardActions, TextField, RaisedButton, FontIcon} from 'material-ui';
 import {stateFromHTML} from 'draft-js-import-html';
 import {Editor, EditorState, createWithContent} from 'draft-js';
+import Done from 'material-ui/svg-icons/action/done';
+import Clear from 'material-ui/svg-icons/content/clear';
 
 class QuizComponent extends Component {
     static propTypes = {
@@ -57,7 +59,7 @@ class QuizComponent extends Component {
         if (validatedAnswer.result === 'error') {
             return (
                 <div className="validated-answer incorrect">
-                    <FontIcon className="material-icons" color='#F56134'>clear</FontIcon>
+                    <Clear color='#F56134'/>
                     {`Your answer is incorrect. Correct answer is ${validatedAnswer.expected}.`}
                 </div>
             )
@@ -65,7 +67,7 @@ class QuizComponent extends Component {
         else {
             return (
                 <div className="validated-answer correct">
-                    <FontIcon className="material-icons" color='#58AD3F'>done</FontIcon>
+                    <Done color='#58AD3F'/>
                     Your answer is correct.
                 </div>
             )

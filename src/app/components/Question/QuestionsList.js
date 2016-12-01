@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import {Card, CardActions, CardText, RaisedButton, FontIcon} from 'material-ui';
 import {stateFromHTML} from 'draft-js-import-html';
 import {Editor, EditorState, createWithContent} from 'draft-js';
+import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
+import Create from 'material-ui/svg-icons/content/create';
 
 class QuestionsList extends Component {
 
@@ -48,11 +50,11 @@ class QuestionsList extends Component {
                                 <CardActions>
                                     <RaisedButton label="Edit"
                                                   secondary={true}
-                                                  icon={<FontIcon className="material-icons">edit</FontIcon>}
+                                                  icon={<Create />}
                                                   onTouchTap={() => this.props.onUpdateQuestionClick(questions[key])}/>
                                     <RaisedButton label="Delete"
                                                   secondary={true}
-                                                  icon={<FontIcon className="material-icons">delete_forever</FontIcon>}
+                                                  icon={<DeleteForever />}
                                                   onTouchTap={() => this.props.onDeleteQuestionClick(questions[key])}/>
                                 </CardActions>
                             </Card>
