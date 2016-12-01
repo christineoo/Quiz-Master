@@ -5,7 +5,8 @@ import {
     RECEIVE_QUESTIONS,
     RECEIVE_QUIZ_QUESTION,
     SHOW_VALIDATED_ANSWER,
-    RESET_QUIZ_QUESTION_AND_ANSWER
+    RESET_QUIZ_QUESTION_AND_ANSWER,
+    RECEIVE_ERROR_MESSAGE
 } from '../../constants/ActionTypes';
 
 describe('Questions Reducer Test', () => {
@@ -176,4 +177,22 @@ describe('Questions Reducer Test', () => {
         };
         expect(actual).toEqual(expected)
     });
+
+    it('should assign receive error message and set error to true', () => {
+        const action = {
+            type: RECEIVE_ERROR_MESSAGE,
+            errorMessage: 'Network Error'
+        };
+        const expected = {
+            isPending: false,
+            questions: {},
+            question: {},
+            validatedAnswer: {},
+            errorMessage: 'Network Error',
+            error: true
+        };
+        const actual = questionReducer(initState(), action);
+        expect(actual).toEqual(expected)
+
+    })
 });
