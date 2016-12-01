@@ -110,7 +110,7 @@ describe('Questions Reducer Test', () => {
             validatedAnswer: {},
             errorMessage: '',
             error: false
-        }
+        };
        expect(actual).toEqual(expected)
     });
 

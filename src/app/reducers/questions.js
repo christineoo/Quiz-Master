@@ -42,7 +42,6 @@ const questions = function(state = initState, action = null) {
             return Object.assign({}, state, {
                 isPending: false,
                 question: action.question,
-                validatedAnswer: {},
                 errorMessage: '',
                 error: false
             });

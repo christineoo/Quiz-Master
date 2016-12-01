@@ -20,7 +20,6 @@ class CenteredView extends Component {
         if (view) {
             let height = window.innerHeight - view.getBoundingClientRect().top;
             view.style.minHeight = `${height}px`;
-            console.log('height: ', height);
         }
     };
 
