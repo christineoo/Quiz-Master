@@ -6,7 +6,7 @@ import sinon from 'sinon';
 import { mount } from 'enzyme';
 import expectJSX from'expect-jsx';
 import QuestionList from '../../components/question/QuestionsList';
-import { Card, FlatButton } from 'material-ui';
+import { Card } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 expect.extend(expectJSX);
