@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Dialog, FlatButton, TextField} from 'material-ui';
-import { stateFromHTML } from 'draft-js-import-html';
-import { stateToHTML } from 'draft-js-export-html';
+import {stateFromHTML} from 'draft-js-import-html';
+import {stateToHTML} from 'draft-js-export-html';
 import {
     Editor,
     EditorState,
@@ -24,8 +24,10 @@ const styleMap = {
 
 function getBlockStyle(block) {
     switch (block.getType()) {
-        case 'blockquote': return 'RichEditor-blockquote';
-        default: return null;
+        case 'blockquote':
+            return 'RichEditor-blockquote';
+        default:
+            return null;
     }
 }
 //text editor's code ends
@@ -90,7 +92,7 @@ class Edit extends Component {
         );
     };
 
-    toggleInlineStyle = (inlineStyle) =>{
+    toggleInlineStyle = (inlineStyle) => {
         this.onChange(
             RichUtils.toggleInlineStyle(
                 this.state.editorState,
@@ -115,7 +117,11 @@ class Edit extends Component {
         this.setState({
             errorMessage: ''
         });
-        this.props.onUpdateClick({ id: this.props.selectedQuestion.id, content: this.state.content, answer: this.state.answer });
+        this.props.onUpdateClick({
+            id: this.props.selectedQuestion.id,
+            content: this.state.content,
+            answer: this.state.answer
+        });
     };
 
     onAnswerChange = (event) => {

@@ -2,10 +2,10 @@ import expect from 'expect';
 import jsdom from 'mocha-jsdom'
 import React from 'react'
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import {mount} from 'enzyme';
 import TestUtils from 'react-addons-test-utils';
 import expectJSX from'expect-jsx';
-import { Dialog, FlatButton, TextField } from 'material-ui';
+import {Dialog, FlatButton, TextField} from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
     Editor,
@@ -55,10 +55,13 @@ describe('Create Question Component', () => {
 
         function getBlockStyle(block) {
             switch (block.getType()) {
-                case 'blockquote': return 'RichEditor-blockquote';
-                default: return null;
+                case 'blockquote':
+                    return 'RichEditor-blockquote';
+                default:
+                    return null;
             }
         }
+
         //text editor's code ends
         const actual = renderer.getRenderOutput();
         const expected = (
@@ -71,12 +74,12 @@ describe('Create Question Component', () => {
                     <FlatButton
                         label={'Cancel'}
                         secondary={true}
-                        onTouchTap={sinon.spy()} />,
+                        onTouchTap={sinon.spy()}/>,
                     <FlatButton
                         label={'Create'}
                         primary={true}
                         disabled={true}
-                        onTouchTap={sinon.spy()} />,
+                        onTouchTap={sinon.spy()}/>,
                 ]}
                 autoScrollBodyContent={true}
             >
@@ -140,7 +143,7 @@ describe('Create Question Component', () => {
         expect(wrapper.state().answer).toEqual('');
         // Check if Create button is disable by default
         expect(wrapper.find(Dialog).node.props.actions[1].props.disabled).toEqual(true);
-        wrapper.setState({ content: 'bar', answer: 'foo' });
+        wrapper.setState({content: 'bar', answer: 'foo'});
         wrapper.update();
         expect(wrapper.state().content).toEqual('bar');
         expect(wrapper.state().answer).toEqual('foo');
@@ -154,14 +157,14 @@ describe('Create Question Component', () => {
         expect(wrapper.state().answer).toEqual('');
         // Check if Create button is disable by default
         expect(wrapper.find(Dialog).node.props.actions[1].props.disabled).toEqual(true);
-        wrapper.setState({ content: 'bar' });
+        wrapper.setState({content: 'bar'});
         wrapper.update();
         expect(wrapper.state().content).toEqual('bar');
         // Check if Create button still remains disabled after setState
         expect(wrapper.find(Dialog).node.props.actions[1].props.disabled).toEqual(true);
 
         // set content to be empty and answer to 'foo'
-        wrapper.setState({ content: '', answer: 'foo' });
+        wrapper.setState({content: '', answer: 'foo'});
         wrapper.update();
         expect(wrapper.state().answer).toEqual('foo');
         // Check if Create button still remains disabled after setState

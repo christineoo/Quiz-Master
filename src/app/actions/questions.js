@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import { Schema, arrayOf, normalize } from 'normalizr';
+import {Schema, arrayOf, normalize} from 'normalizr';
 import axios from 'axios';
 
 const API_ROOT = "https://quiz-master-test.herokuapp.com/api/v1";
@@ -16,14 +16,14 @@ export function resetQuizQuestionAndAnswer() {
     }
 }
 
-export function receiveQuestions(questions){
+export function receiveQuestions(questions) {
     return {
         type: types.RECEIVE_QUESTIONS,
         questions
     }
 }
 
-export function showValidatedAnswer(res){
+export function showValidatedAnswer(res) {
     return {
         type: types.SHOW_VALIDATED_ANSWER,
         res

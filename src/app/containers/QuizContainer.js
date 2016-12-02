@@ -5,8 +5,8 @@ import {Card, CardText, CardActions, TextField, RaisedButton, FontIcon} from 'ma
 
 import {stateFromHTML} from 'draft-js-import-html';
 import {Editor, EditorState, createWithContent} from 'draft-js';
-import { hashHistory } from 'react-router'
-import {startQuiz, submitAnswer,getNextQuestion} from '../actions/questions';
+import {hashHistory} from 'react-router'
+import {startQuiz, submitAnswer, getNextQuestion} from '../actions/questions';
 import QuizComponent from '../components/QuizComponent';
 
 class QuizContainer extends Component {
@@ -24,18 +24,18 @@ class QuizContainer extends Component {
     };
 
     handleNextQuestion = () => {
-        const { validatedAnswer } = this.props;
+        const {validatedAnswer} = this.props;
         this.props.nextQuestion(validatedAnswer.next_question_id);
     };
 
     render() {
-        const { isPending, question, validatedAnswer, error } = this.props
+        const {isPending, question, validatedAnswer, error} = this.props
         console.log('question: ', question)
         console.log('validatedAnswer: ', validatedAnswer)
-        if(isPending && Object.keys(question).length == 0 || error){
+        if (isPending && Object.keys(question).length == 0 || error) {
             return (<div></div>)
         }
-         else if (Object.keys(question).length == 0 && !isPending && !error) {
+        else if (Object.keys(question).length == 0 && !isPending && !error) {
             return (<CenteredView>No questions created yet~!</CenteredView>)
         }
         else {

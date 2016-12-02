@@ -2,10 +2,10 @@ import expect from 'expect';
 import jsdom from 'mocha-jsdom'
 import React from 'react'
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import {mount} from 'enzyme';
 import TestUtils from 'react-addons-test-utils';
 import expectJSX from'expect-jsx';
-import { Dialog, FlatButton, TextField } from 'material-ui';
+import {Dialog, FlatButton, TextField} from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
     Editor,
@@ -14,7 +14,7 @@ import {
     createWithContent,
     ContentState
 } from 'draft-js';
-import { stateFromHTML } from 'draft-js-import-html';
+import {stateFromHTML} from 'draft-js-import-html';
 import UpdateQuestion from '../../components/question/UpdateQuestion';
 import BlockStyleControls from '../../components/common/Editor/BlockStyleControls';
 import InlineStyleControls from '../../components/common/Editor/InlineStyleControls';
@@ -130,7 +130,7 @@ describe('Update Question Component', () => {
         const wrapper = setup();
         // Check if Update button is enable by default
         expect(wrapper.find(Dialog).node.props.actions[1].props.disabled).toEqual(false);
-        wrapper.setState({ content: '', answer: '' });
+        wrapper.setState({content: '', answer: ''});
         wrapper.update();
         expect(wrapper.state().content).toEqual('');
         expect(wrapper.state().answer).toEqual('');
@@ -142,14 +142,14 @@ describe('Update Question Component', () => {
         const wrapper = setup();
         // Check if Update button is enabled by default
         expect(wrapper.find(Dialog).node.props.actions[1].props.disabled).toEqual(false);
-        wrapper.setState({ answer: '' });
+        wrapper.setState({answer: ''});
         wrapper.update();
         expect(wrapper.state().answer).toEqual('');
         // Check if Update button still remains disabled after setState
         expect(wrapper.find(Dialog).node.props.actions[1].props.disabled).toEqual(true);
 
         // set content to be empty and answer to question.answer
-        wrapper.setState({ content: '', answer: question.answer });
+        wrapper.setState({content: '', answer: question.answer});
         wrapper.update();
         expect(wrapper.state().answer).toEqual(question.answer);
         // Check if Update button still remains disabled after setState

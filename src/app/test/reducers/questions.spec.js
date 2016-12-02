@@ -20,6 +20,7 @@ describe('Questions Reducer Test', () => {
             error: false
         }
     }
+
     const questions = {
         1: {
             id: 1,
@@ -85,9 +86,10 @@ describe('Questions Reducer Test', () => {
     });
 
     it('should reset quiz question and validated answer', () => {
-       const action = {
-           type: RESET_QUIZ_QUESTION_AND_ANSWER
-       } ;
+        const action = {
+            type: RESET_QUIZ_QUESTION_AND_ANSWER
+        };
+
         function beforeState() {
             return {
                 isPending: false,
@@ -102,7 +104,8 @@ describe('Questions Reducer Test', () => {
                 error: false
             }
         }
-       const actual = questionReducer(beforeState(), action);
+
+        const actual = questionReducer(beforeState(), action);
         const expected = {
             isPending: false,
             questions: questions,
@@ -111,7 +114,7 @@ describe('Questions Reducer Test', () => {
             errorMessage: '',
             error: false
         };
-       expect(actual).toEqual(expected)
+        expect(actual).toEqual(expected)
     });
 
     it('should assign question received to question', () => {
@@ -143,6 +146,7 @@ describe('Questions Reducer Test', () => {
             id: 1,
             content: "<p>How many letters are there in the <code><strong>English</strong></code> alphabet?</p>",
         };
+
         function beforeState() {
             return {
                 isPending: false,
@@ -153,6 +157,7 @@ describe('Questions Reducer Test', () => {
                 error: false
             }
         }
+
         const action = {
             type: SHOW_VALIDATED_ANSWER,
             res: {

@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import { Dialog, FlatButton } from 'material-ui';
+import {Dialog, FlatButton} from 'material-ui';
 
 class DeleteQuestion extends Component {
 
@@ -20,7 +20,7 @@ class DeleteQuestion extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.selectedQuestion != nextProps.selectedQuestion) {
+        if (this.props.selectedQuestion != nextProps.selectedQuestion) {
             this.setState({
                 content: nextProps.selectedQuestion.content,
                 answer: nextProps.selectedQuestion.answer
@@ -28,17 +28,17 @@ class DeleteQuestion extends Component {
         }
     }
 
-    render () {
+    render() {
         const actions = [
             <FlatButton
                 label={'Cancel'}
                 secondary={true}
-                onTouchTap={this.props.onDeleteDialogClose} />,
+                onTouchTap={this.props.onDeleteDialogClose}/>,
             <FlatButton
                 label={'Delete'}
                 primary={true}
                 disabled={false}
-                onTouchTap={this.props.onSubmitClick} />,
+                onTouchTap={this.props.onSubmitClick}/>,
         ];
 
         return (
@@ -51,7 +51,7 @@ class DeleteQuestion extends Component {
                 autoScrollBodyContent={true}
             >
                 <p><strong>Question:</strong></p>
-                <p dangerouslySetInnerHTML={{__html: this.props.selectedQuestion.content}} />
+                <p dangerouslySetInnerHTML={{__html: this.props.selectedQuestion.content}}/>
                 <p><strong>Answer:</strong></p>
                 <p>{this.props.selectedQuestion.answer}</p>
             </Dialog>

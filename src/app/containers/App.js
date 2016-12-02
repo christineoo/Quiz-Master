@@ -1,12 +1,12 @@
-import React, { Component, PropTypes } from 'react'
+import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { AppBar, FlatButton, LinearProgress, Dialog, Snackbar } from 'material-ui';
-import { hashHistory } from 'react-router'
+import {AppBar, FlatButton, LinearProgress, Dialog, Snackbar} from 'material-ui';
+import {hashHistory} from 'react-router'
 import MainAppBar from '../components/common/MainAppBar';
 
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             showDialogConfirm: false
@@ -14,7 +14,7 @@ class App extends Component {
     }
 
     handleBackButton = () => {
-        if(this.props.location.pathname == '/quiz_mode'){
+        if (this.props.location.pathname == '/quiz_mode') {
             this.setState({
                 showDialogConfirm: true
             });
@@ -37,7 +37,7 @@ class App extends Component {
     };
 
     render() {
-        const { children, error, errorMessage } = this.props;
+        const {children, error, errorMessage} = this.props;
         let loadingProgress = this.props.isPending
             ? <LinearProgress style={{position: 'fixed', zIndex: 1, top: '64px'}} mode="indeterminate"/>
             : null;
@@ -55,25 +55,25 @@ class App extends Component {
 
         let confirmDialog = this.state.showDialogConfirm
             ? (<Dialog open={this.state.showDialogConfirm}
-                        modal={false}
-                        title={'Confirm leave quiz mode?'}
-                        actions={actions}
-                >
-                    Please note that your progress will not be saved.
-                </Dialog>)
+                       modal={false}
+                       title={'Confirm leave quiz mode?'}
+                       actions={actions}
+        >
+            Please note that your progress will not be saved.
+        </Dialog>)
             : null;
 
         let showErrorMessage = error
             ? (<Snackbar open={error}
-                        message={errorMessage}
-                        autoHideDuration={4000}
-                />)
+                         message={errorMessage}
+                         autoHideDuration={4000}
+        />)
             : null;
 
         return (
             <MuiThemeProvider>
                 <div style={{height: '100%'}}>
-                    <MainAppBar onBackButtonClick={this.handleBackButton} pathname={this.props.location.pathname} />
+                    <MainAppBar onBackButtonClick={this.handleBackButton} pathname={this.props.location.pathname}/>
                     {loadingProgress}
                     {children}
                     {confirmDialog}

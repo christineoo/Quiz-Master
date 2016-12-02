@@ -18,11 +18,11 @@ import {
 
 describe('Question Actions Test', () => {
     it('should trigger remote action', () => {
-       const actual = requestRemoteAction();
-       const expected = {
-           type: REQUEST_REMOTE_ACTION
-       };
-       expect(actual).toEqual(expected)
+        const actual = requestRemoteAction();
+        const expected = {
+            type: REQUEST_REMOTE_ACTION
+        };
+        expect(actual).toEqual(expected)
     });
 
     it('should trigger reset quiz and answer', () => {

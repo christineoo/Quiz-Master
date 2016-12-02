@@ -16,7 +16,7 @@ const initState = {
     error: false
 };
 
-const questions = function(state = initState, action = null) {
+const questions = function (state = initState, action = null) {
 
     switch (action.type) {
         case REQUEST_REMOTE_ACTION:

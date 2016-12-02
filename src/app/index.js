@@ -1,8 +1,8 @@
 import React from 'react'
-import { render } from 'react-dom'
+import {render} from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { hashHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
+import {hashHistory} from 'react-router'
+import {syncHistoryWithStore} from 'react-router-redux'
 import Root from './containers/Root'
 import configureStore from './store'
 import './styles/main.scss';
@@ -16,6 +16,6 @@ const history = syncHistoryWithStore(hashHistory, store)
 injectTapEventPlugin();
 
 render(
-    <Root store={store} history={history} />,
+    <Root store={store} history={history}/>,
     document.getElementById('root')
 )

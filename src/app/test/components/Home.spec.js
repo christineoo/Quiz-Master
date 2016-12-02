@@ -2,10 +2,10 @@ import expect from 'expect';
 import React from 'react'
 import TestUtils from 'react-addons-test-utils';
 import expectJSX from'expect-jsx';
-import { mount, shallow } from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import jsdom from 'mocha-jsdom';
 import sinon from 'sinon';
-import { RaisedButton } from 'material-ui';
+import {RaisedButton} from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Home from '../../components/home/Home';
@@ -35,7 +35,7 @@ describe('Home Component', () => {
     it('should render home Manage Questions Mode button and Quiz Mode button', () => {
         const renderer = TestUtils.createRenderer();
         renderer.render(<Home onQuizModeClick={handleQuizModeClick}
-                              onManageQuestionModeClick={handleManageQuestionModeClick} />);
+                              onManageQuestionModeClick={handleManageQuestionModeClick}/>);
         const actual = renderer.getRenderOutput();
         const expected = (
             <div className="home-container">
@@ -47,8 +47,8 @@ describe('Home Component', () => {
                 />
                 < RaisedButton
                     className="button"
-                    label = "Quiz Mode"
-                    primary = {true}
+                    label="Quiz Mode"
+                    primary={true}
                     onTouchTap={handleQuizModeClick}
                 />
             </div>
@@ -83,8 +83,8 @@ describe('Home Component', () => {
     it('should click Quiz Mode once', () => {
         const wrapper = setup();
         const buttons = TestUtils.scryRenderedDOMComponentsWithTag(
-                wrapper.instance(), 'button'
-            );
+            wrapper.instance(), 'button'
+        );
         TestUtils.Simulate.touchTap(buttons[1]);
         sinon.assert.calledOnce(handleQuizModeClick);
     });

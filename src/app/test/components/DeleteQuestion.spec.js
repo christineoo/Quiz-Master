@@ -2,12 +2,12 @@ import expect from 'expect';
 import jsdom from 'mocha-jsdom'
 import React from 'react'
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import {mount} from 'enzyme';
 import TestUtils from 'react-addons-test-utils';
 import expectJSX from'expect-jsx';
 import DeleteQuestion from '../../components/question/DeleteQuestion';
-import { Dialog, FlatButton } from 'material-ui';
-import { RaisedButton } from 'material-ui';
+import {Dialog, FlatButton} from 'material-ui';
+import {RaisedButton} from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -55,16 +55,16 @@ describe('Delete Question Component', () => {
                 actions={[<FlatButton
                     label={'Cancel'}
                     secondary={true}
-                    onTouchTap={handleOnDeleteDialogClose} />,
+                    onTouchTap={handleOnDeleteDialogClose}/>,
                     <FlatButton
-                    label={'Delete'}
-                    primary={true}
-                    disabled={false}
-                    onTouchTap={handleOnSubmitClick} />]}
+                        label={'Delete'}
+                        primary={true}
+                        disabled={false}
+                        onTouchTap={handleOnSubmitClick}/>]}
                 autoScrollBodyContent={true}
             >
                 <p><strong>Question:</strong></p>
-                <p dangerouslySetInnerHTML={{__html: question.content}} />
+                <p dangerouslySetInnerHTML={{__html: question.content}}/>
                 <p><strong>Answer:</strong></p>
                 <p>{question.answer}</p>
             </Dialog>

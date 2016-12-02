@@ -74,7 +74,7 @@ class ManageQuestionsContainer extends Component {
     };
 
     render() {
-        const { isPending, error } = this.props;
+        const {isPending, error} = this.props;
         return (
             <div className="container">
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>

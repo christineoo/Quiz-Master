@@ -21,7 +21,7 @@ class QuestionsList extends Component {
             flexDirection: 'column'
         };
 
-        if(Object.keys(questions).length !== 0) {
+        if (Object.keys(questions).length !== 0) {
             return (
                 <div style={QuestionListStyle}>
                     <h1>Questions List</h1>

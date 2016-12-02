@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react'
-import { RaisedButton } from 'material-ui';
+import React, {Component, PropTypes} from 'react'
+import {RaisedButton} from 'material-ui';
 
 class Home extends Component {
     static propTypes = {

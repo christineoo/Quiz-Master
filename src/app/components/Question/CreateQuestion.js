@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import { Dialog, FlatButton, TextField } from 'material-ui';
-import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
-import { stateToHTML } from 'draft-js-export-html';
+import {Dialog, FlatButton, TextField} from 'material-ui';
+import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
+import {stateToHTML} from 'draft-js-export-html';
 import BlockStyleControls from '../common/Editor/BlockStyleControls';
 import InlineStyleControls from '../common/Editor/InlineStyleControls';
 
@@ -17,8 +17,10 @@ const styleMap = {
 
 function getBlockStyle(block) {
     switch (block.getType()) {
-        case 'blockquote': return 'RichEditor-blockquote';
-        default: return null;
+        case 'blockquote':
+            return 'RichEditor-blockquote';
+        default:
+            return null;
     }
 }
 //text editor's code ends
@@ -88,7 +90,7 @@ class CreateQuestion extends Component {
     };
 
     handleSubmit = () => {
-        this.props.onSubmitClick({ content: this.state.content, answer: this.state.answer });
+        this.props.onSubmitClick({content: this.state.content, answer: this.state.answer});
         this.handleClose();
     };
 
@@ -110,13 +112,13 @@ class CreateQuestion extends Component {
             <FlatButton
                 label={'Cancel'}
                 secondary={true}
-                onTouchTap={this.handleClose} />,
+                onTouchTap={this.handleClose}/>,
             <FlatButton
                 label={'Create'}
                 primary={true}
                 // Empty Editor defaults to have <p><br></p>, so we need to check and disable button if Editor is empty
                 disabled={this.state.content === '' || this.state.content === "<p><br></p>" || this.state.answer === ''}
-                onTouchTap={this.handleSubmit} />,
+                onTouchTap={this.handleSubmit}/>,
         ];
         const {editorState} = this.state;
         // If the user changes block type before entering any text, we can
