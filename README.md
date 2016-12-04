@@ -41,7 +41,7 @@ In the project directory, you can run:
 3. npm start
 
 ## Future Feature Enhancement
-
 * Implement pagination for the questions list page.
+* Implement search/filter for the questions list so that user can easily search for a particular question.
 * Implement batch delete so that user can easily delete more than one question at a time.
-* Add [DraftJS plugin](https://www.draft-js-plugins.com/) to further enhance the rich text editor(such as attaching images)
+* Add [DraftJS plugin](https://www.draft-js-plugins.com/) to further enhance the rich text editor(such as attaching images).
