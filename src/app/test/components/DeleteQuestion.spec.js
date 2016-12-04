@@ -9,7 +9,6 @@ import DeleteQuestion from '../../components/question/DeleteQuestion';
 import {Dialog, FlatButton} from 'material-ui';
 import {RaisedButton} from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 expect.extend(expectJSX);
 describe('Delete Question Component', () => {

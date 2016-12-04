@@ -51,7 +51,7 @@ describe('Questions Reducer Test', () => {
         expect(actual).toEqual(expected)
     });
 
-    it('should return array of questions', () => {
+    it('should return questions by ids', () => {
         const action = {
             type: RECEIVE_QUESTIONS,
             questions
