@@ -32,7 +32,6 @@ class ManageQuestionsContainer extends Component {
     };
 
     handleCreateSubmit = (newQuestion) => {
-        console.log('handleCreateSubmit: ', newQuestion);
         this.props.createQuestion(newQuestion);
         this.setState({
             openCreateDialog: false
