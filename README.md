@@ -1,6 +1,10 @@
 # Quiz Master UI 
 
-This is the UI application for Quiz Master. This application is written using ReactJS and Redux with Material UI. There are 2 modes in this application.
+[Demo](https://christineoo.github.com/Quiz-Master)
+
+This is the UI application for Quiz Master. This application is written using ReactJS and Redux with Material UI. The question content can be styled using rich text editor from [Draft.js](https://facebook.github.io/draft-js/) which is an open source project from Facebook.
+
+There are 2 modes in this application.
 
 * Manage Questions mode
   * User is able create, read, update and delete questions.
@@ -30,7 +34,14 @@ In the project directory, you can run:
 
 * Runs `npm run build` then using `gh-pages` to push the built files in `src/public` folder into `gh-pages`(ie: [https://christineoo.github.com/Quiz-Master](https://christineoo.github.com/Quiz-Master))
 
+## Run Locally
+
+1. Clone repository: git clone https://github.com/christineoo/Quiz-Master.git
+2. npm install
+3. npm start
+
 ## Future Feature Enhancement
 
 * Implement pagination for the questions list page.
 * Implement batch delete so that user can easily delete more than one question at a time.
+* Add [DraftJS plugin](https://www.draft-js-plugins.com/) to further enhance the rich text editor(such as attaching images)
