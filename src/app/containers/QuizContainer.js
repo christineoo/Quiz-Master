@@ -2,8 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import CenteredView from '../components/common/CenteredView';
 import {Card, CardText, CardActions, TextField, RaisedButton, FontIcon} from 'material-ui';
-
-import {stateFromHTML} from 'draft-js-import-html';
 import {Editor, EditorState, createWithContent} from 'draft-js';
 import {hashHistory} from 'react-router'
 import {startQuiz, submitAnswer, getNextQuestion} from '../actions/questions';
