@@ -17,8 +17,9 @@ class CenteredView extends Component {
 
     onResize = () => {
         let view = this.refs.view;
+        const APP_BAR_HEIGHT = 80;
         if (view) {
-            let height = window.innerHeight - view.getBoundingClientRect().top;
+            let height = window.innerHeight - APP_BAR_HEIGHT - view.getBoundingClientRect().top;
             view.style.minHeight = `${height}px`;
         }
     };
