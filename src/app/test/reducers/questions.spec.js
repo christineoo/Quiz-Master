@@ -13,7 +13,7 @@ describe('Questions Reducer Test', () => {
     function initState() {
         return {
             isPending: false,
-            questions: {},
+            questionsById: {},
             question: {},
             validatedAnswer: {},
             errorMessage: '',
@@ -21,7 +21,7 @@ describe('Questions Reducer Test', () => {
         }
     }
 
-    const questions = {
+    const questionsById = {
         1: {
             id: 1,
             answer: "26",
@@ -42,7 +42,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(undefined, action);
         const expected = {
             isPending: false,
-            questions: {},
+            questionsById: {},
             question: {},
             validatedAnswer: {},
             errorMessage: '',
@@ -54,13 +54,12 @@ describe('Questions Reducer Test', () => {
     it('should return questions by ids', () => {
         const action = {
             type: RECEIVE_QUESTIONS,
-            questions
-
+            questions: questionsById
         };
         const actual = questionReducer(initState(), action);
         const expected = {
             isPending: false,
-            questions: questions,
+            questionsById: questionsById,
             question: {},
             validatedAnswer: {},
             errorMessage: '',
@@ -76,7 +75,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(initState(), action);
         const expected = {
             isPending: true,
-            questions: {},
+            questionsById: {},
             question: {},
             validatedAnswer: {},
             errorMessage: '',
@@ -93,8 +92,8 @@ describe('Questions Reducer Test', () => {
         function beforeState() {
             return {
                 isPending: false,
-                questions: questions,
-                question: questions[1],
+                questionsById: questionsById,
+                question: questionsById[1],
                 validatedAnswer: {
                     result: "ok",
                     expected: "26",
@@ -108,7 +107,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(beforeState(), action);
         const expected = {
             isPending: false,
-            questions: questions,
+            questionsById: questionsById,
             question: {},
             validatedAnswer: {},
             errorMessage: '',
@@ -129,7 +128,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(initState(), action);
         const expected = {
             isPending: false,
-            questions: {},
+            questionsById: {},
             question: {
                 id: 1,
                 content: "<p>How many letters are there in the <code><strong>English</strong></code> alphabet?</p>",
@@ -150,7 +149,7 @@ describe('Questions Reducer Test', () => {
         function beforeState() {
             return {
                 isPending: false,
-                questions: {},
+                questionsById: {},
                 question: question,
                 validatedAnswer: {},
                 errorMessage: '',
@@ -170,7 +169,7 @@ describe('Questions Reducer Test', () => {
         const actual = questionReducer(beforeState(), action);
         const expected = {
             isPending: false,
-            questions: {},
+            questionsById: {},
             question: question,
             validatedAnswer: {
                 result: "ok",
@@ -190,7 +189,7 @@ describe('Questions Reducer Test', () => {
         };
         const expected = {
             isPending: false,
-            questions: {},
+            questionsById: {},
             question: {},
             validatedAnswer: {},
             errorMessage: 'Network Error',

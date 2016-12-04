@@ -9,7 +9,7 @@ import {
 
 const initState = {
     isPending: false,
-    questions: {},
+    questionsById: {},
     question: {},
     validatedAnswer: {},
     errorMessage: '',
@@ -33,7 +33,7 @@ const questions = function (state = initState, action = null) {
         case RECEIVE_QUESTIONS:
             return Object.assign({}, state, {
                 isPending: false,
-                questions: action.questions,
+                questionsById: action.questions,
                 errorMessage: '',
                 error: false
             });

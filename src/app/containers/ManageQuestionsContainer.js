@@ -10,10 +10,6 @@ import {loadQuestions, createQuestion, updateQuestion, deleteQuestion} from '../
 
 class ManageQuestionsContainer extends Component {
 
-    static defaultProps = {
-        questions: []
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -104,7 +100,7 @@ class ManageQuestionsContainer extends Component {
                 />
                 {isPending || error ? <div></div> :
                     <QuestionsList
-                        questions={this.props.questions}
+                        questions={this.props.questionsById}
                         onUpdateQuestionClick={this.handleUpdateQuestion}
                         onDeleteQuestionClick={this.handleDeleteQuestion}
                     />
@@ -115,11 +111,11 @@ class ManageQuestionsContainer extends Component {
 }
 
 const stateToProps = state => {
-    const {isPending, questions, error} = state.questions;
+    const {isPending, questionsById, error} = state.questions;
 
     return {
         isPending,
-        questions,
+        questionsById,
         error
     }
 };
